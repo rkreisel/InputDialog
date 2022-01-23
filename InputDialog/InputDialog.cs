@@ -4,7 +4,6 @@
 
 namespace InputDialog;
 
-
 public static class InputDialog
 {
     private static readonly Form frm = new();
