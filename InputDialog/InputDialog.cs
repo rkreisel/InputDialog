@@ -1,4 +1,8 @@
-﻿using System;
+﻿//Acknowledging origin of this code
+//https://www.codeproject.com/tips/822756/input-box-in-csharp-for-windowsforms
+//It has been moderately updated to .net 6 and turned into a nuget package.
+
+using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Drawing;
@@ -10,9 +14,10 @@ namespace InputDialog;
 public static class InputDialog
 {
     private static readonly Form frm = new();
-    private static string _ResultValue = null;
+    private static string? _ResultValue = null;
     private static DialogResult _dialogResult;
     private static ButtonTexts _buttonTexts;
+
     public enum IDIcon
     {
         Error,
@@ -51,14 +56,14 @@ public static class InputDialog
     /// 
     public static IDResult ShowDialog(
         string message,
-        string title = "",
+        string title = "ShowDialog",
         IDIcon icon = IDIcon.Information,
         IDButton button = IDButton.Ok,
         IDType type = IDType.MsgBox,
         IList<string>? listItems = null,
         bool showInTaskBar = false,
-        Font formFont = null,
-        ButtonTexts buttonTexts = null,
+        Font? formFont = null,
+        ButtonTexts? buttonTexts = null,
         string defaultText = "")
     {
         //setup
@@ -66,6 +71,8 @@ public static class InputDialog
         frm.Cursor = Cursors.Default;
         _ResultValue = "";
         _buttonTexts = buttonTexts ?? new ButtonTexts();
+        if (string.IsNullOrEmpty(defaultText))
+            defaultText= string.Empty;
 
         //Form definition
         frm.MaximizeBox = false;
@@ -105,10 +112,8 @@ public static class InputDialog
             frm.Controls.Add(btn);
 
         //Add ComboBox or TextBox to the form
-        Control ctrl = Cntrl(type, listItems);
+        Control ctrl = Cntrl(type, listItems, defaultText);
         panel.Controls.Add(ctrl);
-        if (!string.IsNullOrWhiteSpace(defaultText))
-            ctrl.Text = defaultText;
 
         //Get automatically cursor to the TextBox
         if (ctrl.Name == "textBox")
@@ -147,6 +152,7 @@ public static class InputDialog
         frm.Close();
     }
 
+    
     private static void TextBox_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Enter)
@@ -155,9 +161,9 @@ public static class InputDialog
             frm.Close();
         }
     }
+    
     private static void Frm_FormClosing(object sender, FormClosingEventArgs e)
     {
-        // DialogRes = DialogResult.None;
     }
 
     private static PictureBox Picture(IDIcon icon)
@@ -187,6 +193,7 @@ public static class InputDialog
         picture.Location = new Point(10, 10);
         return picture;
     }
+    
     private static Button[] Btns(IDButton button)
     {
         //Buttons field for return
@@ -248,7 +255,8 @@ public static class InputDialog
         }
         return returnButtons;
     }
-    private static Control Cntrl(IDType type, IList<string> listItems)
+
+    private static Control Cntrl(IDType type, IList<string>? listItems, string defaultText = "")
     {
         Control returnControl = new();
         switch (type)
@@ -279,6 +287,7 @@ public static class InputDialog
                 };
                 textBox.KeyDown += new KeyEventHandler(TextBox_KeyDown);
                 textBox.Name = "textBox";
+                textBox.Text = defaultText;
                 returnControl = textBox;
                 break;
         }
