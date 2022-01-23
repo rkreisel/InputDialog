@@ -119,7 +119,6 @@
         private Button btnDefaultInput;
         private Button btnChangeButtonName;
         private Button btnSimpleMsgBox;
-        private Button button1;
         private Button btnComboBox;
         private Button btnComboBoxWithError;
     }

@@ -2,12 +2,6 @@
 //https://www.codeproject.com/tips/822756/input-box-in-csharp-for-windowsforms
 //It has been moderately updated to .net 6 and turned into a nuget package.
 
-using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Drawing;
-using System.Reflection;
-
 namespace InputDialog;
 
 
@@ -72,7 +66,7 @@ public static class InputDialog
         _ResultValue = "";
         _buttonTexts = buttonTexts ?? new ButtonTexts();
         if (string.IsNullOrEmpty(defaultText))
-            defaultText= string.Empty;
+            defaultText = string.Empty;
 
         //Form definition
         frm.MaximizeBox = false;
@@ -152,7 +146,7 @@ public static class InputDialog
         frm.Close();
     }
 
-    
+
     private static void TextBox_KeyDown(object sender, KeyEventArgs e)
     {
         if (e.KeyCode == Keys.Enter)
@@ -161,7 +155,7 @@ public static class InputDialog
             frm.Close();
         }
     }
-    
+
     private static void Frm_FormClosing(object sender, FormClosingEventArgs e)
     {
     }
@@ -193,7 +187,7 @@ public static class InputDialog
         picture.Location = new Point(10, 10);
         return picture;
     }
-    
+
     private static Button[] Btns(IDButton button)
     {
         //Buttons field for return
@@ -263,7 +257,7 @@ public static class InputDialog
         {
             case IDType.ComboBox:
                 if (listItems == null)
-                    listItems = new List<string> { "No Items provided!"};
+                    listItems = new List<string> { "No Items provided!" };
                 ComboBox comboBox = new()
                 {
                     Size = new Size(180, 22),

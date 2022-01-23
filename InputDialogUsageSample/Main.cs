@@ -40,7 +40,7 @@ public partial class Main : Form
     private void btnComboBox_Click(object sender, EventArgs e)
     {
         var rslt = InputDialog.InputDialog.ShowDialog(
-            "This is the message.", "Title", InputDialog.InputDialog.IDIcon.Question, InputDialog.InputDialog.IDButton.OkCancel, type: InputDialog.InputDialog.IDType.ComboBox, listItems: new List<string> { "Item 1", "Item2", "Item 3"});
+            "This is the message.", "Title", InputDialog.InputDialog.IDIcon.Question, InputDialog.InputDialog.IDButton.OkCancel, type: InputDialog.InputDialog.IDType.ComboBox, listItems: new List<string> { "Item 1", "Item2", "Item 3" });
         ShowResult(rslt.ResultText);
     }
 
@@ -50,7 +50,7 @@ public partial class Main : Form
             "This is the message.", "Title", InputDialog.InputDialog.IDIcon.Question, InputDialog.InputDialog.IDButton.OkCancel, type: InputDialog.InputDialog.IDType.ComboBox);
         ShowResult(rslt.ResultText);
     }
-    private void ShowResult(string rslt)
+    private static void ShowResult(string rslt)
     {
         MessageBox.Show(rslt, "InputDialog Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }

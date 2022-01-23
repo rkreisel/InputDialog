@@ -1,14 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace InputDialog;
+﻿namespace InputDialog;
 public class ButtonTexts
 {
-    public string OKText {get; set;}
-    public string CancelText {get; set;}
+    public string OKText { get; set; }
+    public string CancelText { get; set; }
     public string YesText { get; set; }
     public string NoText { get; set; }
 
