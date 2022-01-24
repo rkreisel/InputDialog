@@ -6,7 +6,12 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>1.0.0.5</Version>
+		<Version>1.0.1</Version>
+		<Description>A simple dialog box to capture user input. Supports a single string input or selection of a value from a dropdown box.
+Also functions a a standard MessageBox.</Description>
+		<Copyright>Houise on the ROck Software</Copyright>
+		<PackageProjectUrl>https://github.com/rkreisel/InputDialog</PackageProjectUrl>
+		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -16,5 +21,13 @@
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
 	  <NoWarn>1701;1702;CS8622;CS8618</NoWarn>
 	</PropertyGroup>
+
+	<ItemGroup>
+	  <None Update="ReadMe.md">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <Pack>True</Pack>
+	    <PackagePath>\</PackagePath>
+	  </None>
+	</ItemGroup>
 
 </Project>
