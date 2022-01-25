@@ -6,10 +6,10 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>1.0.1</Version>
+		<Version>1.0.1.1</Version>
 		<Description>A simple dialog box to capture user input. Supports a single string input or selection of a value from a dropdown box.
 Also functions a a standard MessageBox.</Description>
-		<Copyright>Houise on the ROck Software</Copyright>
+		<Copyright>House on the Rock Software</Copyright>
 		<PackageProjectUrl>https://github.com/rkreisel/InputDialog</PackageProjectUrl>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
 	</PropertyGroup>
