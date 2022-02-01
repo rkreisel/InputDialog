@@ -34,6 +34,8 @@
             this.btnSimpleMsgBox = new System.Windows.Forms.Button();
             this.btnComboBox = new System.Windows.Forms.Button();
             this.btnComboBoxWithError = new System.Windows.Forms.Button();
+            this.btnChangeFont = new System.Windows.Forms.Button();
+            this.fd = new System.Windows.Forms.FontDialog();
             this.SuspendLayout();
             // 
             // btnSimpleTextInput
@@ -96,11 +98,22 @@
             this.btnComboBoxWithError.UseVisualStyleBackColor = true;
             this.btnComboBoxWithError.Click += new System.EventHandler(this.btnComboBoxWithError_Click);
             // 
+            // btnChangeFont
+            // 
+            this.btnChangeFont.Location = new System.Drawing.Point(3, 176);
+            this.btnChangeFont.Name = "btnChangeFont";
+            this.btnChangeFont.Size = new System.Drawing.Size(143, 23);
+            this.btnChangeFont.TabIndex = 6;
+            this.btnChangeFont.Text = "Change Font";
+            this.btnChangeFont.UseVisualStyleBackColor = true;
+            this.btnChangeFont.Click += new System.EventHandler(this.btnChangeFont_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(149, 177);
+            this.ClientSize = new System.Drawing.Size(149, 203);
+            this.Controls.Add(this.btnChangeFont);
             this.Controls.Add(this.btnComboBoxWithError);
             this.Controls.Add(this.btnComboBox);
             this.Controls.Add(this.btnSimpleMsgBox);
@@ -121,5 +134,7 @@
         private Button btnSimpleMsgBox;
         private Button btnComboBox;
         private Button btnComboBoxWithError;
+        private Button btnChangeFont;
+        private FontDialog fd;
     }
 }

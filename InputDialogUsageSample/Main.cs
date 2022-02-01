@@ -84,4 +84,20 @@ public partial class Main : Form
     {
         MessageBox.Show(rslt, "InputDialog Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
     }
+
+    private void btnChangeFont_Click(object sender, EventArgs e)
+    {
+        if(fd.ShowDialog() == DialogResult.OK)
+        {
+            var rslt = InputDialog.InputDialog.ShowDialog(
+                "Enter text",
+                "Title",
+                InputDialog.InputDialog.IDIcon.Question,
+                InputDialog.InputDialog.IDButton.OkCancel,
+                InputDialog.InputDialog.IDType.TextBox,
+                formFont : new Font(fd.Font.FontFamily, fd.Font.Size, fd.Font.Style));
+            if (rslt.DialogResult == DialogResult.OK)
+                ShowResult(rslt.ResultText);
+        }
+    }
 }
