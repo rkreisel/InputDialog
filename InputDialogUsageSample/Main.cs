@@ -11,8 +11,11 @@ public partial class Main : Form
 
     private void btnSimpleTextInput_Click(object sender, EventArgs e)
     {
+        var txt = cmLongText.Checked
+            ? "This can be a long piece of text. This test is to show how the feature works. This is a really long chunk of text. I just want to see how it scrolls when it gets too long for the window."
+            : "Enter Text";
         var rslt = InputDialog.InputDialog.ShowDialog(
-            "Enter text",
+            txt,    
             "Title",
             InputDialog.InputDialog.IDIcon.Question,
             InputDialog.InputDialog.IDButton.OkCancel,

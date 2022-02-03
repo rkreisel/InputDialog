@@ -10,6 +10,7 @@ public static class InputDialog
     private static string? _ResultValue = null;
     private static DialogResult _dialogResult;
     private static ButtonTexts _buttonTexts;
+    private static Size txtSize = new Size(230, 50);
 
     public enum IDIcon
     {
@@ -90,15 +91,41 @@ public static class InputDialog
         //Add icon in to panel
         panel.Controls.Add(Picture(icon));
 
-        //Label definition (message)
-        Label label = new()
+        var g = Graphics.FromHwnd(panel.Handle);
+        var ts = g.MeasureString(message, formFont ?? frm.Font);
+        if (ts.Width > (txtSize.Width * .98))
         {
-            Text = message,
-            Size = new Size(245, 60),
-            Location = new Point(90, 10),
-            TextAlign = ContentAlignment.MiddleLeft
-        };
-        panel.Controls.Add(label);
+            TextBox text = new()
+            {
+                Text = message,
+                Size = txtSize,
+                Location = new Point(90, 10),
+                ReadOnly = true,
+                Multiline = true,
+                BorderStyle = BorderStyle.FixedSingle,
+                BackColor = Color.White,
+                ScrollBars = ScrollBars.Vertical                
+            };
+            //Set label font
+            if (formFont != null)
+                text.Font = formFont;
+            panel.Controls.Add(text);
+        }
+        else
+        {
+            //Label definition (message)
+            Label label = new()
+            {
+                Text = message,
+                Size = new Size(245, 60),
+                Location = new Point(90, 10),
+                TextAlign = ContentAlignment.MiddleLeft
+            };
+            //Set label font
+            if (formFont != null)
+                label.Font = formFont;
+            panel.Controls.Add(label);
+        }
 
         //Add buttons to the form
         foreach (Button btn in Btns(button))
@@ -112,9 +139,7 @@ public static class InputDialog
         if (ctrl.Name == "textBox")
             frm.ActiveControl = ctrl;
 
-        //Set label font
-        if (formFont != null)
-            label.Font = formFont;
+       
         frm.ShowDialog();
 
         //Return text value
