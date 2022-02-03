@@ -6,9 +6,11 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>1.0.1.1</Version>
+		<Version>1.0.2</Version>
 		<Description>A simple dialog box to capture user input. Supports a single string input or selection of a value from a dropdown box.
-Also functions a a standard MessageBox.</Description>
+Also functions a a standard MessageBox.
+
+20220202 - Enabled a scrolling textbox if message is too long.</Description>
 		<Copyright>House on the Rock Software</Copyright>
 		<PackageProjectUrl>https://github.com/rkreisel/InputDialog</PackageProjectUrl>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>
