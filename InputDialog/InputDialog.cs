@@ -10,9 +10,9 @@ public static class InputDialog
     private static string? _ResultValue = null;
     private static DialogResult _dialogResult;
     private static ButtonTexts _buttonTexts;
-    private static Size txtSize = new Size(230, 50);
+    private static Size txtSize = new(230, 50);
     private static ToolTip? _tt = null;
-    private static Font? _defaultFormFont = null;
+    private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular );
 
     public enum IDIcon
     {
