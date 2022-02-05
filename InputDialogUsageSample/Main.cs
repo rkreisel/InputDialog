@@ -8,7 +8,7 @@ public partial class Main : Form
     {
         InitializeComponent();
     }
-
+     
     private void btnSimpleTextInput_Click(object sender, EventArgs e)
     {
         var txt = cmLongText.Checked
@@ -52,7 +52,7 @@ public partial class Main : Form
 
     private void btnSimpleMsgBox_Click(object sender, EventArgs e)
     {
-        var rslt = InputDialog.InputDialog.ShowDialog(
+        InputDialog.InputDialog.ShowDialog(
             "This is the message.",
             "Title",
             InputDialog.InputDialog.IDIcon.Question,
