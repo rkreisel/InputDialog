@@ -40,6 +40,10 @@
             this.btnChangeFont = new System.Windows.Forms.Button();
             this.fd = new System.Windows.Forms.FontDialog();
             this.tt = new System.Windows.Forms.ToolTip(this.components);
+            this.btnChangeBackColor = new System.Windows.Forms.Button();
+            this.btnChangeForeColor = new System.Windows.Forms.Button();
+            this.btnChangeBothColors = new System.Windows.Forms.Button();
+            this.btnBackgroundImage = new System.Windows.Forms.Button();
             this.cm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,11 +135,55 @@
             this.btnChangeFont.UseVisualStyleBackColor = true;
             this.btnChangeFont.Click += new System.EventHandler(this.btnChangeFont_Click);
             // 
+            // btnChangeBackColor
+            // 
+            this.btnChangeBackColor.Location = new System.Drawing.Point(3, 205);
+            this.btnChangeBackColor.Name = "btnChangeBackColor";
+            this.btnChangeBackColor.Size = new System.Drawing.Size(143, 23);
+            this.btnChangeBackColor.TabIndex = 7;
+            this.btnChangeBackColor.Text = "Change Back Color";
+            this.btnChangeBackColor.UseVisualStyleBackColor = true;
+            this.btnChangeBackColor.Click += new System.EventHandler(this.btnChangeBackColor_Click);
+            // 
+            // btnChangeForeColor
+            // 
+            this.btnChangeForeColor.Location = new System.Drawing.Point(3, 234);
+            this.btnChangeForeColor.Name = "btnChangeForeColor";
+            this.btnChangeForeColor.Size = new System.Drawing.Size(143, 23);
+            this.btnChangeForeColor.TabIndex = 8;
+            this.btnChangeForeColor.Text = "Change Fore Color";
+            this.btnChangeForeColor.UseVisualStyleBackColor = true;
+            this.btnChangeForeColor.Click += new System.EventHandler(this.btnChangeForeColor_Click);
+            // 
+            // btnChangeBothColors
+            // 
+            this.btnChangeBothColors.Location = new System.Drawing.Point(3, 263);
+            this.btnChangeBothColors.Name = "btnChangeBothColors";
+            this.btnChangeBothColors.Size = new System.Drawing.Size(143, 23);
+            this.btnChangeBothColors.TabIndex = 9;
+            this.btnChangeBothColors.Text = "Change Both Colors";
+            this.btnChangeBothColors.UseVisualStyleBackColor = true;
+            this.btnChangeBothColors.Click += new System.EventHandler(this.btnChangeBothColors_Click);
+            // 
+            // btnBackgroundImage
+            // 
+            this.btnBackgroundImage.Location = new System.Drawing.Point(3, 292);
+            this.btnBackgroundImage.Name = "btnBackgroundImage";
+            this.btnBackgroundImage.Size = new System.Drawing.Size(143, 23);
+            this.btnBackgroundImage.TabIndex = 10;
+            this.btnBackgroundImage.Text = "Add BG Image";
+            this.btnBackgroundImage.UseVisualStyleBackColor = true;
+            this.btnBackgroundImage.Click += new System.EventHandler(this.btnBackgroundImage_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(149, 203);
+            this.ClientSize = new System.Drawing.Size(149, 322);
+            this.Controls.Add(this.btnBackgroundImage);
+            this.Controls.Add(this.btnChangeBothColors);
+            this.Controls.Add(this.btnChangeForeColor);
+            this.Controls.Add(this.btnChangeBackColor);
             this.Controls.Add(this.btnChangeFont);
             this.Controls.Add(this.btnComboBoxWithError);
             this.Controls.Add(this.btnComboBox);
@@ -163,5 +211,9 @@
         private ContextMenuStrip cm;
         private ToolStripMenuItem cmLongText;
         private ToolTip tt;
+        private Button btnChangeBackColor;
+        private Button btnChangeForeColor;
+        private Button btnChangeBothColors;
+        private Button btnBackgroundImage;
     }
 }

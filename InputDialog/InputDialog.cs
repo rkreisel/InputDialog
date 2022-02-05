@@ -62,7 +62,8 @@ public static class InputDialog
         ButtonTexts? buttonTexts = null,
         string defaultText = "",
         Image? backgroundImage = null,
-        ImageLayout? imageLayout = null,
+        ImageLayout? backgroundImageLayout = null,
+        Color? foregroundColor = null,
         Color? backgroundColor = null)
     {
         //setup
@@ -71,10 +72,13 @@ public static class InputDialog
         var fixedFormFontSize = frm.Font.Size;
         var workingFont = formFont ?? frm.Font;
         _defaultFormFont = new Font(workingFont.FontFamily, fixedFormFontSize, workingFont.Style);
-
+        frm.BackgroundImage = null;
         frm.Font = _defaultFormFont;
         frm.Controls.Clear();
         frm.Cursor = Cursors.Default;
+        frm.BackColor = backgroundColor ?? Color.White;
+        frm.ForeColor = foregroundColor ?? Color.Black;
+
         _ResultValue = "";
         _buttonTexts = buttonTexts ?? new ButtonTexts();
         if (string.IsNullOrEmpty(defaultText))
@@ -96,8 +100,14 @@ public static class InputDialog
         {
             Location = new Point(0, 0),
             Size = new Size(340, 97),
-            BackColor = Color.White
+            BackColor = Color.Transparent, //  backgroundColor ?? Color.White,
+            ForeColor = foregroundColor ?? Color.Black
         };
+        if (backgroundImage != null)
+        {
+            frm.BackgroundImage = backgroundImage;
+            frm.BackgroundImageLayout = backgroundImageLayout ?? ImageLayout.Stretch;
+        }
         frm.Controls.Add(panel);
 
         //Add icon in to panel
@@ -127,9 +137,10 @@ public static class InputDialog
             Label label = new()
             {
                 Text = message,
-                Size = new Size(245, 60),
+                Size = new Size(240, 60),
                 Location = new Point(90, 10),
-                TextAlign = ContentAlignment.MiddleLeft
+                TextAlign = ContentAlignment.MiddleLeft,
+                BackColor = Color.Transparent
             };
             //Set label font
             label.Font = formFont ?? _defaultFormFont;
@@ -147,16 +158,6 @@ public static class InputDialog
         //Get automatically cursor to the TextBox
         if (ctrl.Name == "textBox")
             frm.ActiveControl = ctrl;
-
-        if (backgroundImage != null)
-        {
-            frm.BackgroundImage = backgroundImage;
-            frm.BackgroundImageLayout = imageLayout ?? ImageLayout.Stretch;
-        }
-        if (backgroundColor != null)
-        {
-            frm.BackColor = backgroundColor.Value;
-        }
 
         frm.ShowDialog();
 
@@ -234,6 +235,7 @@ public static class InputDialog
         picture.SizeMode = PictureBoxSizeMode.StretchImage;
         picture.Size = new Size(60, 60);
         picture.Location = new Point(10, 10);
+        picture.BackColor = Color.Transparent;
         return picture;
     }
 
@@ -298,7 +300,10 @@ public static class InputDialog
                 btn.Size = new Size(75, 23);
                 btn.TextAlign = ContentAlignment.MiddleCenter;
                 btn.Font = _defaultFormFont;
+                btn.BackColor = Color.White;
+                btn.ForeColor = Color.Black;
                 var tl = MeasureText(btn, btn.Text, _defaultFormFont);
+                
                 //if the button text is too wide, add a tool tip with the text
                 if (tl.Width > btn.Width * .9)
                 {
