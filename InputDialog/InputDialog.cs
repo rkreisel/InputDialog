@@ -40,12 +40,12 @@ public static class InputDialog
     /// </summary>
     /// <param name="message">Message in dialog(as System.String)</param>
     /// <param name="title">Title of dialog (as System.String)</param>
-    /// <param name="icon">Select icon (as InputBox.Icon)</param>
-    /// <param name="button">Select icon (as InputBox.Buttons)</param>
-    /// <param name="type">Type of control in Input box (as InputBox.Type)</param>
+    /// <param name="icon">Select icon (as InputBox.IDIcon)</param>
+    /// <param name="button">Select icon (as InputBox.IDButton)</param>
+    /// <param name="type">Type of control in Input box (as InputBox.IDType)</param>
     /// <param name="listItems">Array of ComboBox items (as List<string>)</param>
-    /// <param name="formFont">Font in form (as Font)</param>
-    /// <param name="defaultText">Default text in populate the input window</param>
+    /// <param name="formFont">Font in form (as Font - created as new (Font(parameters...) )</param>
+    /// <param name="defaultText">Default text with which to populate the input (response) window</param>
     /// <returns></returns>
     /// 
     public static IDResult ShowDialog(

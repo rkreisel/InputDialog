@@ -39,6 +39,7 @@
             this.btnComboBoxWithError = new System.Windows.Forms.Button();
             this.btnChangeFont = new System.Windows.Forms.Button();
             this.fd = new System.Windows.Forms.FontDialog();
+            this.tt = new System.Windows.Forms.ToolTip(this.components);
             this.cm.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -50,6 +51,7 @@
             this.btnSimpleTextInput.Size = new System.Drawing.Size(143, 23);
             this.btnSimpleTextInput.TabIndex = 0;
             this.btnSimpleTextInput.Text = "Simple Text Input";
+            this.tt.SetToolTip(this.btnSimpleTextInput, "Right click to enable long text input test");
             this.btnSimpleTextInput.UseVisualStyleBackColor = true;
             this.btnSimpleTextInput.Click += new System.EventHandler(this.btnSimpleTextInput_Click);
             // 
@@ -59,14 +61,14 @@
             this.cmLongText});
             this.cm.Name = "cm";
             this.cm.ShowCheckMargin = true;
-            this.cm.Size = new System.Drawing.Size(203, 48);
+            this.cm.Size = new System.Drawing.Size(141, 26);
             // 
             // cmLongText
             // 
             this.cmLongText.CheckOnClick = true;
             this.cmLongText.Name = "cmLongText";
             this.cmLongText.ShowShortcutKeys = false;
-            this.cmLongText.Size = new System.Drawing.Size(202, 22);
+            this.cmLongText.Size = new System.Drawing.Size(140, 22);
             this.cmLongText.Text = "Long Text";
             // 
             // btnDefaultInput
@@ -160,5 +162,6 @@
         private FontDialog fd;
         private ContextMenuStrip cm;
         private ToolStripMenuItem cmLongText;
+        private ToolTip tt;
     }
 }
