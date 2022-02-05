@@ -11,6 +11,8 @@ public static class InputDialog
     private static DialogResult _dialogResult;
     private static ButtonTexts _buttonTexts;
     private static Size txtSize = new Size(230, 50);
+    private static ToolTip? _tt = null;
+    private static Font? _defaultFormFont = null;
 
     public enum IDIcon
     {
@@ -36,7 +38,7 @@ public static class InputDialog
 
     /// <summary>
     /// This form is like a MessageBox, but you can select type of controls on it. 
-    /// This form returning a DialogResult value.
+    /// This form returns a IDResult containing the DialogResult and the input/selected text.
     /// </summary>
     /// <param name="message">Message in dialog(as System.String)</param>
     /// <param name="title">Title of dialog (as System.String)</param>
@@ -44,7 +46,7 @@ public static class InputDialog
     /// <param name="button">Select icon (as InputBox.IDButton)</param>
     /// <param name="type">Type of control in Input box (as InputBox.IDType)</param>
     /// <param name="listItems">Array of ComboBox items (as List<string>)</param>
-    /// <param name="formFont">Font in form (as Font - created as new (Font(parameters...) )</param>
+    /// <param name="formFont">Font in form (as Font - created as new (Font(parameters...) Note that selected size is ignored for all form controls except the prompt.)</param>
     /// <param name="defaultText">Default text with which to populate the input (response) window</param>
     /// <returns></returns>
     /// 
@@ -58,9 +60,19 @@ public static class InputDialog
         bool showInTaskBar = false,
         Font? formFont = null,
         ButtonTexts? buttonTexts = null,
-        string defaultText = "")
+        string defaultText = "",
+        Image? backgroundImage = null,
+        ImageLayout? imageLayout = null,
+        Color? backgroundColor = null)
     {
         //setup
+
+        //set the default Font for everything
+        var fixedFormFontSize = frm.Font.Size;
+        var workingFont = formFont ?? frm.Font;
+        _defaultFormFont = new Font(workingFont.FontFamily, fixedFormFontSize, workingFont.Style);
+
+        frm.Font = _defaultFormFont;
         frm.Controls.Clear();
         frm.Cursor = Cursors.Default;
         _ResultValue = "";
@@ -91,8 +103,7 @@ public static class InputDialog
         //Add icon in to panel
         panel.Controls.Add(Picture(icon));
 
-        var g = Graphics.FromHwnd(panel.Handle);
-        var ts = g.MeasureString(message, formFont ?? frm.Font);
+        var ts = MeasureText(panel, message, formFont ?? _defaultFormFont);
         if (ts.Width > (txtSize.Width * .98))
         {
             TextBox text = new()
@@ -107,8 +118,7 @@ public static class InputDialog
                 ScrollBars = ScrollBars.Vertical                
             };
             //Set label font
-            if (formFont != null)
-                text.Font = formFont;
+            text.Font = formFont ?? _defaultFormFont;
             panel.Controls.Add(text);
         }
         else
@@ -122,8 +132,7 @@ public static class InputDialog
                 TextAlign = ContentAlignment.MiddleLeft
             };
             //Set label font
-            if (formFont != null)
-                label.Font = formFont;
+            label.Font = formFont ?? _defaultFormFont;
             panel.Controls.Add(label);
         }
 
@@ -139,7 +148,16 @@ public static class InputDialog
         if (ctrl.Name == "textBox")
             frm.ActiveControl = ctrl;
 
-       
+        if (backgroundImage != null)
+        {
+            frm.BackgroundImage = backgroundImage;
+            frm.BackgroundImageLayout = imageLayout ?? ImageLayout.Stretch;
+        }
+        if (backgroundColor != null)
+        {
+            frm.BackColor = backgroundColor.Value;
+        }
+
         frm.ShowDialog();
 
         //Return text value
@@ -155,6 +173,13 @@ public static class InputDialog
                 break;
         }
         return new IDResult { DialogResult = _dialogResult, ResultText = _ResultValue };
+    }
+
+    private static SizeF MeasureText(Control control, string text, Font font)
+    {
+        var g = Graphics.FromHwnd(control.Handle);
+        var ts = g.MeasureString(text, font);
+        return ts;
     }
 
     private static void Button_Click(object sender, EventArgs e)
@@ -216,11 +241,13 @@ public static class InputDialog
     {
         //Buttons field for return
         Button[] returnButtons = new Button[3];
+
         //Buttons instances
         Button OkButton = new();
         Button CancelButton = new();
         Button YesButton = new();
         Button NoButton = new();
+
         //Set buttons names and text
         OkButton.Text = _buttonTexts.OKText;
         OkButton.Name = "OK";
@@ -262,12 +289,22 @@ public static class InputDialog
                 returnButtons[2] = CancelButton;
                 break;
         }
+
         //Set size and event for all used buttons
         foreach (Button btn in returnButtons)
         {
             if (btn != null)
             {
                 btn.Size = new Size(75, 23);
+                btn.TextAlign = ContentAlignment.MiddleCenter;
+                btn.Font = _defaultFormFont;
+                var tl = MeasureText(btn, btn.Text, _defaultFormFont);
+                //if the button text is too wide, add a tool tip with the text
+                if (tl.Width > btn.Width * .9)
+                {
+                    btn.AutoEllipsis = true;
+                    GetTooTipControl().SetToolTip(btn, btn.Text);
+                }
                 btn.Click += new EventHandler(Button_Click);
             }
         }
@@ -310,5 +347,14 @@ public static class InputDialog
                 break;
         }
         return returnControl;
+    }
+
+    private static ToolTip GetTooTipControl()
+    {
+        if (_tt == null)
+        {
+            _tt = new ToolTip();
+        }
+        return _tt;
     }
 }

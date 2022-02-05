@@ -45,7 +45,7 @@ public partial class Main : Form
             InputDialog.InputDialog.IDIcon.Question, 
             InputDialog.InputDialog.IDButton.OkCancel, 
             InputDialog.InputDialog.IDType.TextBox, 
-            buttonTexts: new ButtonTexts { OKText = "Do It" });
+            buttonTexts: new ButtonTexts { OKText = "Do It long button text here" });
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
     }
