@@ -150,7 +150,7 @@ public partial class Main : Form
             InputDialog.InputDialog.IDType.TextBox,
             foregroundColor: Color.White,
             formFont: new Font("Arial", 28, FontStyle.Bold),
-            backgroundImage: Image.FromFile(@"Images\Picture2.jpg"),
+            backgroundImage: Image.FromFile(@"Images\Picture.jpg"),
             backgroundImageLayout: ImageLayout.Stretch);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
