@@ -32,10 +32,14 @@
             this.sc = new System.Windows.Forms.SplitContainer();
             this.btnShowDialog = new System.Windows.Forms.Button();
             this.txtForegroundColor = new System.Windows.Forms.TextBox();
+            this.cmDialogInput = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmDialogInputReset = new System.Windows.Forms.ToolStripMenuItem();
             this.label16 = new System.Windows.Forms.Label();
             this.txtBackgroundColor = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.cbImageLayout = new System.Windows.Forms.ComboBox();
+            this.cmDropDowns = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmDropDownsReset = new System.Windows.Forms.ToolStripMenuItem();
             this.label14 = new System.Windows.Forms.Label();
             this.txtBackgroundImage = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
@@ -74,10 +78,13 @@
             this.resetAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.mnuMainExit = new System.Windows.Forms.ToolStripMenuItem();
+            this.cd = new System.Windows.Forms.ColorDialog();
             ((System.ComponentModel.ISupportInitialize)(this.sc)).BeginInit();
             this.sc.Panel1.SuspendLayout();
             this.sc.Panel2.SuspendLayout();
             this.sc.SuspendLayout();
+            this.cmDialogInput.SuspendLayout();
+            this.cmDropDowns.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.mnuMain.SuspendLayout();
             this.SuspendLayout();
@@ -119,6 +126,7 @@
             this.sc.Panel1.Controls.Add(this.label2);
             this.sc.Panel1.Controls.Add(this.txtMessage);
             this.sc.Panel1.Controls.Add(this.label1);
+            this.sc.Panel1.Cursor = System.Windows.Forms.Cursors.Default;
             // 
             // sc.Panel2
             // 
@@ -138,11 +146,28 @@
             // 
             // txtForegroundColor
             // 
+            this.txtForegroundColor.ContextMenuStrip = this.cmDialogInput;
             this.txtForegroundColor.Location = new System.Drawing.Point(482, 223);
             this.txtForegroundColor.Name = "txtForegroundColor";
             this.txtForegroundColor.ReadOnly = true;
             this.txtForegroundColor.Size = new System.Drawing.Size(223, 23);
             this.txtForegroundColor.TabIndex = 26;
+            this.txtForegroundColor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtForegroundColor_MouseDoubleClick);
+            this.txtForegroundColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentTextBox);
+            // 
+            // cmDialogInput
+            // 
+            this.cmDialogInput.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmDialogInputReset});
+            this.cmDialogInput.Name = "cmDialogInput";
+            this.cmDialogInput.Size = new System.Drawing.Size(103, 26);
+            // 
+            // cmDialogInputReset
+            // 
+            this.cmDialogInputReset.Name = "cmDialogInputReset";
+            this.cmDialogInputReset.Size = new System.Drawing.Size(102, 22);
+            this.cmDialogInputReset.Text = "Reset";
+            this.cmDialogInputReset.Click += new System.EventHandler(this.cmDialogInputReset_Click);
             // 
             // label16
             // 
@@ -156,11 +181,14 @@
             // 
             // txtBackgroundColor
             // 
+            this.txtBackgroundColor.ContextMenuStrip = this.cmDialogInput;
             this.txtBackgroundColor.Location = new System.Drawing.Point(482, 194);
             this.txtBackgroundColor.Name = "txtBackgroundColor";
             this.txtBackgroundColor.ReadOnly = true;
             this.txtBackgroundColor.Size = new System.Drawing.Size(223, 23);
             this.txtBackgroundColor.TabIndex = 24;
+            this.txtBackgroundColor.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtBackgroundColor_MouseDoubleClick);
+            this.txtBackgroundColor.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentTextBox);
             // 
             // label15
             // 
@@ -173,6 +201,8 @@
             // 
             // cbImageLayout
             // 
+            this.cbImageLayout.ContextMenuStrip = this.cmDropDowns;
+            this.cbImageLayout.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbImageLayout.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbImageLayout.FormattingEnabled = true;
             this.cbImageLayout.Items.AddRange(new object[] {
@@ -185,6 +215,22 @@
             this.cbImageLayout.Name = "cbImageLayout";
             this.cbImageLayout.Size = new System.Drawing.Size(223, 23);
             this.cbImageLayout.TabIndex = 22;
+            this.tt.SetToolTip(this.cbImageLayout, "Right Click To Clear");
+            this.cbImageLayout.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
+            // 
+            // cmDropDowns
+            // 
+            this.cmDropDowns.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmDropDownsReset});
+            this.cmDropDowns.Name = "cmDropDowns";
+            this.cmDropDowns.Size = new System.Drawing.Size(103, 26);
+            // 
+            // cmDropDownsReset
+            // 
+            this.cmDropDownsReset.Name = "cmDropDownsReset";
+            this.cmDropDownsReset.Size = new System.Drawing.Size(102, 22);
+            this.cmDropDownsReset.Text = "Reset";
+            this.cmDropDownsReset.Click += new System.EventHandler(this.cmDropDownsReset_Click);
             // 
             // label14
             // 
@@ -197,11 +243,14 @@
             // 
             // txtBackgroundImage
             // 
+            this.txtBackgroundImage.ContextMenuStrip = this.cmDialogInput;
             this.txtBackgroundImage.Location = new System.Drawing.Point(482, 136);
             this.txtBackgroundImage.Name = "txtBackgroundImage";
             this.txtBackgroundImage.ReadOnly = true;
             this.txtBackgroundImage.Size = new System.Drawing.Size(223, 23);
             this.txtBackgroundImage.TabIndex = 20;
+            this.txtBackgroundImage.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtBackgroundImage_MouseDoubleClick);
+            this.txtBackgroundImage.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentTextBox);
             // 
             // label13
             // 
@@ -318,12 +367,16 @@
             // 
             // txtFont
             // 
+            this.txtFont.ContextMenuStrip = this.cmDialogInput;
             this.txtFont.Location = new System.Drawing.Point(125, 194);
             this.txtFont.Name = "txtFont";
             this.txtFont.ReadOnly = true;
             this.txtFont.Size = new System.Drawing.Size(223, 23);
             this.txtFont.TabIndex = 15;
             this.tt.SetToolTip(this.txtFont, "Click to Select Font");
+            this.txtFont.TextChanged += new System.EventHandler(this.txtFont_TextChanged);
+            this.txtFont.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.txtFont_MouseDoubleClick);
+            this.txtFont.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentTextBox);
             // 
             // label7
             // 
@@ -368,6 +421,8 @@
             // 
             // cbPrompt
             // 
+            this.cbPrompt.ContextMenuStrip = this.cmDropDowns;
+            this.cbPrompt.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbPrompt.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbPrompt.FormattingEnabled = true;
             this.cbPrompt.Items.AddRange(new object[] {
@@ -378,6 +433,8 @@
             this.cbPrompt.Name = "cbPrompt";
             this.cbPrompt.Size = new System.Drawing.Size(223, 23);
             this.cbPrompt.TabIndex = 9;
+            this.tt.SetToolTip(this.cbPrompt, "Right Click To Clear");
+            this.cbPrompt.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
             // 
             // label5
             // 
@@ -391,6 +448,8 @@
             // 
             // cbButtons
             // 
+            this.cbButtons.ContextMenuStrip = this.cmDropDowns;
+            this.cbButtons.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbButtons.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbButtons.FormattingEnabled = true;
             this.cbButtons.Items.AddRange(new object[] {
@@ -402,6 +461,8 @@
             this.cbButtons.Name = "cbButtons";
             this.cbButtons.Size = new System.Drawing.Size(223, 23);
             this.cbButtons.TabIndex = 7;
+            this.tt.SetToolTip(this.cbButtons, "Right Click To Clear");
+            this.cbButtons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
             // 
             // label4
             // 
@@ -415,6 +476,8 @@
             // 
             // cbIcon
             // 
+            this.cbIcon.ContextMenuStrip = this.cmDropDowns;
+            this.cbIcon.Cursor = System.Windows.Forms.Cursors.Default;
             this.cbIcon.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbIcon.FormattingEnabled = true;
             this.cbIcon.Items.AddRange(new object[] {
@@ -427,6 +490,8 @@
             this.cbIcon.Name = "cbIcon";
             this.cbIcon.Size = new System.Drawing.Size(223, 23);
             this.cbIcon.TabIndex = 5;
+            this.tt.SetToolTip(this.cbIcon, "Right Click To Clear");
+            this.cbIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
             // 
             // label3
             // 
@@ -513,19 +578,19 @@
             // resetAllToolStripMenuItem
             // 
             this.resetAllToolStripMenuItem.Name = "resetAllToolStripMenuItem";
-            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.resetAllToolStripMenuItem.Size = new System.Drawing.Size(119, 22);
             this.resetAllToolStripMenuItem.Text = "Reset All";
             this.resetAllToolStripMenuItem.Click += new System.EventHandler(this.mnuMainResetAll_Click);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(116, 6);
             // 
             // mnuMainExit
             // 
             this.mnuMainExit.Name = "mnuMainExit";
-            this.mnuMainExit.Size = new System.Drawing.Size(180, 22);
+            this.mnuMainExit.Size = new System.Drawing.Size(119, 22);
             this.mnuMainExit.Text = "Exit";
             this.mnuMainExit.Click += new System.EventHandler(this.mnuMainExit_Click);
             // 
@@ -548,6 +613,8 @@
             this.sc.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.sc)).EndInit();
             this.sc.ResumeLayout(false);
+            this.cmDialogInput.ResumeLayout(false);
+            this.cmDropDowns.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.mnuMain.ResumeLayout(false);
@@ -604,5 +671,10 @@
         private ToolStripSeparator toolStripMenuItem1;
         private ToolStripMenuItem mnuMainExit;
         private ToolStripMenuItem resetAllToolStripMenuItem;
+        private ContextMenuStrip cmDropDowns;
+        private ToolStripMenuItem cmDropDownsReset;
+        private ContextMenuStrip cmDialogInput;
+        private ToolStripMenuItem cmDialogInputReset;
+        private ColorDialog cd;
     }
 }
