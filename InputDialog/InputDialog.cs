@@ -77,7 +77,7 @@ public static class InputDialog
         frm.Controls.Clear();
         frm.Cursor = Cursors.Default;
         frm.BackColor = backgroundColor ?? Color.White;
-        frm.ForeColor = foregroundColor ?? Color.Black;
+        frm.ForeColor = foregroundColor ?? Color.Black;      
 
         _ResultValue = "";
         _buttonTexts = buttonTexts ?? new ButtonTexts();
@@ -93,7 +93,7 @@ public static class InputDialog
         frm.ShowIcon = false;
         frm.ShowInTaskbar = showInTaskBar;
         frm.FormClosing += new FormClosingEventHandler(Frm_FormClosing);
-        frm.StartPosition = FormStartPosition.CenterParent;
+        frm.StartPosition = FormStartPosition.CenterParent;        
 
         //Panel definition
         Panel panel = new()
