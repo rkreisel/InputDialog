@@ -143,6 +143,7 @@
             this.btnShowDialog.TabIndex = 0;
             this.btnShowDialog.Text = "Show Dialog";
             this.btnShowDialog.UseVisualStyleBackColor = true;
+            this.btnShowDialog.Click += new System.EventHandler(this.btnShowDialog_Click);
             // 
             // txtForegroundColor
             // 
@@ -434,7 +435,8 @@
             this.cbPrompt.Size = new System.Drawing.Size(223, 23);
             this.cbPrompt.TabIndex = 9;
             this.tt.SetToolTip(this.cbPrompt, "Right Click To Clear");
-            this.cbPrompt.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
+            this.cbPrompt.SelectedIndexChanged += new System.EventHandler(this.cbPrompt_SelectedIndexChanged);
+            this.cbPrompt.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentTextBox);
             // 
             // label5
             // 
@@ -639,7 +641,6 @@
         private TextBox txtFont;
         private Label label7;
         private CheckBox chkShowInTaskbar;
-        private TextBox txtComboItems;
         private Label label6;
         private ComboBox cbPrompt;
         private Label label5;
@@ -676,5 +677,6 @@
         private ContextMenuStrip cmDialogInput;
         private ToolStripMenuItem cmDialogInputReset;
         private ColorDialog cd;
+        private TextBox txtComboItems;
     }
 }

@@ -14,4 +14,8 @@
     <None Remove="NewFolder\**" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\InputDialog\InputDialog.csproj" />
+  </ItemGroup>
+
 </Project>

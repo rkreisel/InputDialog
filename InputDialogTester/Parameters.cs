@@ -1,3 +1,6 @@
+using InputDialog;
+using static InputDialog.InputDialog;
+
 namespace InputDialogTester
 {
     public partial class Parameters : Form
@@ -8,7 +11,11 @@ namespace InputDialogTester
         private Color? chosenBackgroundColor;
         private ComboBox? currentComboBox = null;
         private TextBox? currentTextBox = null;
-
+        private IDIcon chosenIcon;
+        private IDButton chosenButton;
+        private IDType chosenType;
+        private ImageLayout chosenImageLayout;
+        
         public Parameters()
         {
             InitializeComponent();
@@ -40,14 +47,23 @@ namespace InputDialogTester
         public void SetDefaultTitle() =>
             txtTitle.Text = "ShowDialog";
 
-        public void SetDefaultIcon() =>
+        public void SetDefaultIcon()
+        {
             cbIcon.SelectedItem = cbIcon.Items[2];
+            chosenIcon = IDIcon.Information;
+        }
 
-        public void SetDefaultButton() =>
+        public void SetDefaultButton()
+        {
             cbButtons.SelectedItem = cbButtons.Items[0];
+            chosenButton = IDButton.Ok;
+        }
 
-        public void SetDefaultPromptType() =>
+        public void SetDefaultPromptType()
+        {
             cbPrompt.SelectedItem = cbPrompt.SelectedItem = cbPrompt.Items[2];
+            chosenType = IDType.MsgBox;
+        }
 
         public void SetDefaultPromptItems() =>
             txtComboItems.Text = string.Empty;
@@ -55,8 +71,11 @@ namespace InputDialogTester
         public void SetDefaultShowInTaskbar() =>
             chkShowInTaskbar.Checked = true;
 
-        public void SetDefaultFont() =>
-            txtFont.Text = String.Empty;
+        public void SetDefaultFont()
+        {
+            chosenFont = this.Font;
+            txtFont.Text = $"{chosenFont.Name}, {chosenFont.Size}, {chosenFont.Style}";
+        }
 
         public void SetDefaultButtonTexts()
         {
@@ -72,8 +91,11 @@ namespace InputDialogTester
         public void SetDefaultBackGroundImage() =>
             txtBackgroundImage.Text = String.Empty;
 
-        public void SetDefaultBackgroundImageLayout() =>
+        public void SetDefaultBackgroundImageLayout()
+        {
             cbImageLayout.Text = String.Empty;
+            chosenImageLayout = ImageLayout.None;
+        }
 
         public void SetDefaultForegroundColor() =>
             txtForegroundColor.Text = String.Empty;
@@ -86,6 +108,7 @@ namespace InputDialogTester
 
         #endregion
 
+        #region Screen Control
         private void mnuMainResetAll_Click(object sender, EventArgs e)
         {
             SetAllDefaults();
@@ -158,7 +181,6 @@ namespace InputDialogTester
                     chosenForegroundColor = null;
                     break;
             }
-
         }
 
         private void txtBackgroundImage_MouseDoubleClick(object sender, MouseEventArgs e)
@@ -184,6 +206,54 @@ namespace InputDialogTester
             {
                 txtForegroundColor.Text = cd.Color.Name;
                 chosenForegroundColor = cd.Color;
+            }
+        }
+        #endregion
+
+        private void btnShowDialog_Click(object sender, EventArgs e)
+        {
+            ButtonTexts btnTxts = new ButtonTexts {
+                CancelText = txtCancelButton.Text,
+                NoText = txtNoButton.Text,
+                OKText = txtOkButton.Text,
+                YesText = txtYesButton.Text,
+            };
+            Image bgImage = string.IsNullOrEmpty(chosenBackgroundImageFilename) 
+                ? null
+                : Image.FromFile(chosenBackgroundImageFilename);
+
+            var rslt = InputDialog.InputDialog.ShowDialog(
+                message: txtMessage.Text,
+                title: txtTitle.Text,
+                icon: chosenIcon,
+                button: chosenButton,
+                type: chosenType,
+                listItems: txtComboItems.Lines.ToList(),
+                showInTaskBar: chkShowInTaskbar.Checked,
+                formFont: chosenFont,
+                buttonTexts: btnTxts,
+                defaultText: string.IsNullOrEmpty(txtDefaultText.Text?.Trim()) ? String.Empty : txtDefaultText.Text,
+                backgroundImage: bgImage,
+                backgroundImageLayout: chosenImageLayout,
+                foregroundColor: chosenForegroundColor,
+                backgroundColor: chosenBackgroundColor); ;
+            if(rslt.DialogResult == DialogResult.OK)
+                txtResult.Text = rslt.ResultText;
+        }
+
+        private void cbPrompt_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            switch (cbPrompt.SelectedItem.ToString())
+            {
+                case "Combo Box":
+                    chosenType = IDType.ComboBox;
+                    break;
+                case "Text Box":
+                    chosenType = IDType.TextBox;
+                    break;
+                case "Message Box":
+                    chosenType = IDType.MsgBox;
+                    break;
             }
         }
     }
