@@ -14,7 +14,7 @@ namespace InputDialogTester
         private IDIcon chosenIcon;
         private IDButton chosenButton;
         private IDType chosenType;
-        private ImageLayout chosenImageLayout;
+        private ImageLayout? chosenImageLayout;
         
         public Parameters()
         {
@@ -255,6 +255,21 @@ namespace InputDialogTester
                     chosenType = IDType.MsgBox;
                     break;
             }
+        }
+
+        private void cbImageLayout_SelectedValueChanged(object sender, EventArgs e)
+        {
+            ImageLayout.TryParse(typeof(ImageLayout), cbImageLayout.SelectedItem.ToString(), out object? layoutType);
+            chosenImageLayout = (ImageLayout?)layoutType;
+        }
+
+        private void cbButtons_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cbButtons.SelectedItem == null)
+                return;
+            var selectorText = cbButtons.SelectedItem.ToString().Replace(" ", "").Replace("and", "").Replace(",","");
+            IDButton.TryParse(typeof(IDButton), selectorText, out object btnType);
+            chosenButton = (IDButton)btnType;
         }
     }
 }

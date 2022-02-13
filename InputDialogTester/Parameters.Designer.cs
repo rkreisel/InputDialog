@@ -217,6 +217,7 @@
             this.cbImageLayout.Size = new System.Drawing.Size(223, 23);
             this.cbImageLayout.TabIndex = 22;
             this.tt.SetToolTip(this.cbImageLayout, "Right Click To Clear");
+            this.cbImageLayout.SelectedValueChanged += new System.EventHandler(this.cbImageLayout_SelectedValueChanged);
             this.cbImageLayout.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
             // 
             // cmDropDowns
@@ -456,7 +457,7 @@
             this.cbButtons.FormattingEnabled = true;
             this.cbButtons.Items.AddRange(new object[] {
             "Ok",
-            "Okay and Cancel",
+            "Ok and Cancel",
             "Yes and No",
             "Yes, No, and Cancel"});
             this.cbButtons.Location = new System.Drawing.Point(125, 136);
@@ -464,6 +465,7 @@
             this.cbButtons.Size = new System.Drawing.Size(223, 23);
             this.cbButtons.TabIndex = 7;
             this.tt.SetToolTip(this.cbButtons, "Right Click To Clear");
+            this.cbButtons.SelectedIndexChanged += new System.EventHandler(this.cbButtons_SelectedIndexChanged);
             this.cbButtons.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
             // 
             // label4

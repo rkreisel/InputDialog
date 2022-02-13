@@ -1,6 +1,8 @@
 ﻿//Acknowledging origin of this code
 //https://www.codeproject.com/tips/822756/input-box-in-csharp-for-windowsforms
-//It has been moderately updated to .net 6 and turned into a nuget package.
+//It has been modified significantly, converted to .net 6 and turned into a nuget package.
+
+using InputDialog.Utilities;
 
 namespace InputDialog;
 
@@ -13,6 +15,7 @@ public static class InputDialog
     private static Size txtSize = new(230, 50);
     private static ToolTip? _tt = null;
     private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular );
+    private static Size _defaultSize = new Size(350, 170);
 
     public enum IDIcon
     {
@@ -37,22 +40,28 @@ public static class InputDialog
     }
 
     /// <summary>
-    /// This form is like a MessageBox, but you can select type of controls on it. 
+    /// This form functions like a MessageBox, with the added feature of accepting input via a textbox or combobox.
     /// This form returns a IDResult containing the DialogResult and the input/selected text.
+    /// All inputs except Message have default values.
+    /// Default operation mode is MessageBox.
     /// </summary>
     /// <param name="message">Message in dialog(as System.String)</param>
-    /// <param name="title">Title of dialog (as System.String)</param>
-    /// <param name="icon">Select icon (as InputBox.IDIcon)</param>
-    /// <param name="button">Select icon (as InputBox.IDButton)</param>
-    /// <param name="type">Type of control in Input box (as InputBox.IDType)</param>
-    /// <param name="listItems">Array of ComboBox items (as List<string>)</param>
-    /// <param name="formFont">Font in form (as Font - created as new (Font(parameters...) Note that selected size is ignored for all form controls except the prompt.)</param>
-    /// <param name="defaultText">Default text with which to populate the input (response) window</param>
-    /// <returns></returns>
-    /// 
+    /// <param name="title">Title of dialog (as System.String) [Show Dialog]</param>
+    /// <param name="icon">Select icon (as InputBox.IDIcon) [Icon.Information]</param>
+    /// <param name="button">Select icon (as InputBox.IDButton) [IDButton.Ok]</param>
+    /// <param name="type">Type of control in Input box (as InputBox.IDType) [IDType.MsgBox]</param>
+    /// <param name="listItems">Array of ComboBox items (as List<string>) {null}</param>
+    /// <param name="showInTaskBar">Adds an icon ot the task bar. [false]</param>
+    /// <param name="buttonTexts">An instance of a ButtonTexts class (if null defaults to English text) [OK, Cancel, Yes, No (in English)]</param>
+    /// <param name="formFont">Font in form (as Font - created as new (Font(parameters...) Note that selected size is ignored for all form controls except the prompt.) [System default for forms]]</param>
+    /// <param name="defaultText">Default text for the response box. (Does not apply to the dropdown style) [String.Empty] </param>
+    /// <param name="backgroundImage">A Bitmap that will be placed on the form. [null]</param>
+    /// <param name="foregroundColor">A for the text. (As System,Color) [null defauilts to Black]</param>
+    /// <param name="backgroundColor">A color for the background. (As System,Color) [null defaults to White]</param>
+    /// <returns>IDResult containing the DialogResult and the input/selected text</returns>
     public static IDResult ShowDialog(
         string message,
-        string title = "ShowDialog",
+        string title = "Show Dialog",
         IDIcon icon = IDIcon.Information,
         IDButton button = IDButton.Ok,
         IDType type = IDType.MsgBox,
@@ -88,7 +97,7 @@ public static class InputDialog
         frm.MaximizeBox = false;
         frm.MinimizeBox = false;
         frm.FormBorderStyle = FormBorderStyle.FixedDialog;
-        frm.Size = new Size(350, 170);
+        frm.Size = _defaultSize;
         frm.Text = title;
         frm.ShowIcon = false;
         frm.ShowInTaskbar = showInTaskBar;
@@ -100,12 +109,13 @@ public static class InputDialog
         {
             Location = new Point(0, 0),
             Size = new Size(340, 97),
-            BackColor = Color.Transparent, //  backgroundColor ?? Color.White,
+            BackColor = Color.Transparent,
             ForeColor = foregroundColor ?? Color.Black
         };
         if (backgroundImage != null)
         {
-            frm.BackgroundImage = backgroundImage;
+            var newSize = backgroundImage.CalcFitSize(_defaultSize.Width, _defaultSize.Height);
+            frm.BackgroundImage = backgroundImage.ResizeImage(newSize.Width, newSize.Height);
             frm.BackgroundImageLayout = backgroundImageLayout ?? ImageLayout.Stretch;
         }
         frm.Controls.Add(panel);
