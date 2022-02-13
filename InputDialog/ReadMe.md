@@ -1,4 +1,4 @@
-﻿﻿﻿# ﻿Input Dialog
+﻿﻿﻿﻿# ﻿Input Dialog
 
 Input Dialog is a simple .net 6-windows, Winforms Input dialog in a nuget package.
 
@@ -8,7 +8,10 @@ https://www.nuget.org/packages/InputDialog/
 
 ### Usage
 
-(See the sample usage app in GitHub - https://github.com/rkreisel/InputDialog)
+See the sample usage apps in GitHub 
+
+- https://github.com/rkreisel/InputDialog/tree/main/InputDialog
+- https://github.com/rkreisel/InputDialog/tree/main/InputDialogUsageSample
 
 
 
