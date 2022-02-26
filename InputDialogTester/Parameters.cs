@@ -15,7 +15,7 @@ namespace InputDialogTester
         private IDButton chosenButton;
         private IDType chosenType;
         private ImageLayout? chosenImageLayout;
-        
+
         public Parameters()
         {
             InitializeComponent();
@@ -155,16 +155,16 @@ namespace InputDialogTester
             {
                 chosenFont = fd.Font;
                 txtFont.Text = $"{chosenFont.Name}, {chosenFont.Size}, {chosenFont.Style}";
-            }            
+            }
         }
 
         private void cmDialogInputReset_Click(object sender, EventArgs e)
         {
             if (currentTextBox == null)
                 return;
-            switch(currentTextBox.Name)
+            switch (currentTextBox.Name)
             {
-                case "txtFont" :
+                case "txtFont":
                     txtFont.Text = String.Empty;
                     chosenFont = null;
                     break;
@@ -185,7 +185,7 @@ namespace InputDialogTester
 
         private void txtBackgroundImage_MouseDoubleClick(object sender, MouseEventArgs e)
         {
-            if(ofd.ShowDialog() == DialogResult.OK)
+            if (ofd.ShowDialog() == DialogResult.OK)
             {
                 txtBackgroundImage.Text = chosenBackgroundImageFilename = ofd.FileName;
             }
@@ -212,13 +212,14 @@ namespace InputDialogTester
 
         private void btnShowDialog_Click(object sender, EventArgs e)
         {
-            ButtonTexts btnTxts = new ButtonTexts {
+            ButtonTexts btnTxts = new ButtonTexts
+            {
                 CancelText = txtCancelButton.Text,
                 NoText = txtNoButton.Text,
                 OKText = txtOkButton.Text,
                 YesText = txtYesButton.Text,
             };
-            Image bgImage = string.IsNullOrEmpty(chosenBackgroundImageFilename) 
+            Image bgImage = string.IsNullOrEmpty(chosenBackgroundImageFilename)
                 ? null
                 : Image.FromFile(chosenBackgroundImageFilename);
 
@@ -237,7 +238,7 @@ namespace InputDialogTester
                 backgroundImageLayout: chosenImageLayout,
                 foregroundColor: chosenForegroundColor,
                 backgroundColor: chosenBackgroundColor); ;
-            if(rslt.DialogResult == DialogResult.OK)
+            if (rslt.DialogResult == DialogResult.OK)
                 txtResult.Text = rslt.ResultText;
         }
 
@@ -267,7 +268,7 @@ namespace InputDialogTester
         {
             if (cbButtons.SelectedItem == null)
                 return;
-            var selectorText = cbButtons.SelectedItem.ToString().Replace(" ", "").Replace("and", "").Replace(",","");
+            var selectorText = cbButtons.SelectedItem.ToString().Replace(" ", "").Replace("and", "").Replace(",", "");
             IDButton.TryParse(typeof(IDButton), selectorText, out object btnType);
             chosenButton = (IDButton)btnType;
         }
