@@ -335,7 +335,7 @@ public static class InputDialog
         switch (type)
         {
             case IDType.ComboBox:
-                if (listItems == null)
+                if (listItems == null || listItems.Count == 0)
                     listItems = new List<string> { "No Items provided!" };
                 ComboBox comboBox = new()
                 {
@@ -353,12 +353,11 @@ public static class InputDialog
                 if (!string.IsNullOrEmpty(defaultText?.Trim()))
                 {
                     var targetIndex = comboBox.Items.IndexOf(defaultText.Trim());
-                    if (targetIndex != 0)
+                    if (targetIndex >= 0)
                     {
                         comboBox.SelectedIndex = targetIndex;
                     }
-                }
-                
+                }                
                 returnControl = comboBox;
                 break;
             case IDType.TextBox:

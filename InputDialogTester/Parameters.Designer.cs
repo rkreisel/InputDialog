@@ -269,6 +269,8 @@
             this.txtDefaultText.Name = "txtDefaultText";
             this.txtDefaultText.Size = new System.Drawing.Size(223, 23);
             this.txtDefaultText.TabIndex = 18;
+            this.tt.SetToolTip(this.txtDefaultText, "Enter the default text or the exact text of the item in the drop down that yiuy w" +
+        "ant to be the default selection.");
             // 
             // label12
             // 
