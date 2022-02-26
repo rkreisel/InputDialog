@@ -3,6 +3,8 @@
 //It has been modified significantly, converted to .net 6 and turned into a nuget package.
 
 using InputDialog.Utilities;
+using Microsoft.Win32;
+using System.Reflection.Metadata;
 
 namespace InputDialog;
 
@@ -14,7 +16,7 @@ public static class InputDialog
     private static ButtonTexts _buttonTexts;
     private static Size txtSize = new(230, 50);
     private static ToolTip? _tt = null;
-    private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular );
+    private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular);
     private static Size _defaultSize = new Size(350, 170);
 
     public enum IDIcon
@@ -86,7 +88,7 @@ public static class InputDialog
         frm.Controls.Clear();
         frm.Cursor = Cursors.Default;
         frm.BackColor = backgroundColor ?? Color.White;
-        frm.ForeColor = foregroundColor ?? Color.Black;      
+        frm.ForeColor = foregroundColor ?? Color.Black;
 
         _ResultValue = "";
         _buttonTexts = buttonTexts ?? new ButtonTexts();
@@ -102,7 +104,7 @@ public static class InputDialog
         frm.ShowIcon = false;
         frm.ShowInTaskbar = showInTaskBar;
         frm.FormClosing += new FormClosingEventHandler(Frm_FormClosing);
-        frm.StartPosition = FormStartPosition.CenterParent;        
+        frm.StartPosition = FormStartPosition.CenterParent;
 
         //Panel definition
         Panel panel = new()
@@ -123,6 +125,7 @@ public static class InputDialog
         //Add icon in to panel
         panel.Controls.Add(Picture(icon));
 
+        //Add Message
         var ts = MeasureText(panel, message, formFont ?? _defaultFormFont);
         if (ts.Width > (txtSize.Width * .98))
         {
@@ -135,10 +138,10 @@ public static class InputDialog
                 Multiline = true,
                 BorderStyle = BorderStyle.FixedSingle,
                 BackColor = Color.White,
-                ScrollBars = ScrollBars.Vertical                
+                ScrollBars = ScrollBars.Vertical
             };
             //Set label font
-            text.Font = formFont ?? _defaultFormFont;
+            text.Font = formFont ?? _defaultFormFont;            
             panel.Controls.Add(text);
         }
         else
@@ -151,7 +154,7 @@ public static class InputDialog
                 Location = new Point(90, 10),
                 TextAlign = ContentAlignment.MiddleLeft,
                 BackColor = Color.Transparent
-            };
+            };            
             //Set label font
             label.Font = formFont ?? _defaultFormFont;
             panel.Controls.Add(label);
@@ -165,10 +168,10 @@ public static class InputDialog
         Control ctrl = Cntrl(type, listItems, defaultText);
         panel.Controls.Add(ctrl);
 
-        //Get automatically cursor to the TextBox
+        //Move cursor to the TextBox
         if (ctrl.Name == "textBox")
             frm.ActiveControl = ctrl;
-
+        
         frm.ShowDialog();
 
         //Return text value
@@ -313,7 +316,7 @@ public static class InputDialog
                 btn.BackColor = Color.White;
                 btn.ForeColor = Color.Black;
                 var tl = MeasureText(btn, btn.Text, _defaultFormFont);
-                
+
                 //if the button text is too wide, add a tool tip with the text
                 if (tl.Width > btn.Width * .9)
                 {
@@ -347,6 +350,15 @@ public static class InputDialog
                         comboBox.Items.Add(item);
                     comboBox.SelectedIndex = 0;
                 }
+                if (!string.IsNullOrEmpty(defaultText?.Trim()))
+                {
+                    var targetIndex = comboBox.Items.IndexOf(defaultText.Trim());
+                    if (targetIndex != 0)
+                    {
+                        comboBox.SelectedIndex = targetIndex;
+                    }
+                }
+                
                 returnControl = comboBox;
                 break;
             case IDType.TextBox:
