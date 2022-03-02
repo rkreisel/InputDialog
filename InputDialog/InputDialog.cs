@@ -127,7 +127,8 @@ public static class InputDialog
 
         //Add Message
         var ts = MeasureText(panel, message, formFont ?? _defaultFormFont);
-        if (ts.Width > (txtSize.Width * .98))
+        var lines = message.Split("\r\n");
+        if (ts.Width > (txtSize.Width * .98) || lines.Length > 4)
         {
             TextBox text = new()
             {
