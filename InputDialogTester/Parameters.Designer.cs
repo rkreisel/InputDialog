@@ -495,8 +495,7 @@
             "Exclamation",
             "Information",
             "Question",
-            "Nothing",
-            "Warning"});
+            "Nothing"});
             this.cbIcon.Location = new System.Drawing.Point(125, 107);
             this.cbIcon.Name = "cbIcon";
             this.cbIcon.Size = new System.Drawing.Size(223, 23);

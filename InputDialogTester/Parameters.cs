@@ -300,8 +300,7 @@ namespace InputDialogTester
                 1 => IDIcon.Exclamation,
                 2 => IDIcon.Information,
                 3 => IDIcon.Question,
-                4 => IDIcon.Nothing,
-                _ => IDIcon.Warning
+                _ => IDIcon.Nothing
             };
         }
     }

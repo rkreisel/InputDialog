@@ -25,8 +25,7 @@ public static class InputDialog
         Exclamation,
         Information,
         Question,
-        Nothing,
-        Warning
+        Nothing
     }
     public enum IDType
     {
@@ -124,9 +123,14 @@ public static class InputDialog
         frm.Controls.Add(panel);
 
         //Add icon in to panel
-        panel.Controls.Add(Picture(icon));
+        if (icon != IDIcon.Nothing)
+            panel.Controls.Add(Picture(icon));
 
         //Add Message
+        var loc = icon == IDIcon.Nothing
+            ? new Point(10, 10)
+            : new Point(90, 10);
+
         var ts = MeasureText(panel, message, formFont ?? _defaultFormFont);
         var lines = message.Split("\r\n");
         if (ts.Width > (txtSize.Width * .98) || lines.Length > 4)
@@ -135,28 +139,35 @@ public static class InputDialog
             {
                 Text = message,
                 Size = txtSize,
-                Location = new Point(90, 10),
+                Location = loc,
                 ReadOnly = true,
                 Multiline = true,
                 BorderStyle = BorderStyle.FixedSingle,
                 BackColor = Color.White,
-                ScrollBars = ScrollBars.Vertical
+                ScrollBars = ScrollBars.Vertical,
+                Width = icon == IDIcon.Nothing
+                ? 314
+                : 224
             };
             //Set label font
-            text.Font = formFont ?? _defaultFormFont;            
+            text.Font = formFont ?? _defaultFormFont;
+            text.Select(0, 0);
             panel.Controls.Add(text);
         }
         else
         {
+            Size boxsize = icon == IDIcon.Nothing
+                ? new Size(338, 60)
+                : new Size(248, 60);
             //Label definition (message)
             Label label = new()
             {
                 Text = message,
-                Size = new Size(240, 60),
-                Location = new Point(90, 10),
+                Size = boxsize,
+                Location = loc,
                 TextAlign = ContentAlignment.MiddleLeft,
                 BackColor = Color.Transparent
-            };            
+            };
             //Set label font
             label.Font = formFont ?? _defaultFormFont;
             panel.Controls.Add(label);
@@ -167,13 +178,13 @@ public static class InputDialog
             frm.Controls.Add(btn);
 
         //Add ComboBox or TextBox to the form
-        Control ctrl = Cntrl(type, listItems, defaultText);
+        Control ctrl = Cntrl(type, listItems, icon != IDIcon.Nothing, defaultText);
         panel.Controls.Add(ctrl);
 
         //Move cursor to the TextBox
         if (ctrl.Name == "textBox")
             frm.ActiveControl = ctrl;
-        
+
         frm.ShowDialog();
 
         //Return text value
@@ -242,9 +253,6 @@ public static class InputDialog
                 break;
             case IDIcon.Question:
                 picture.Image = SystemIcons.Question.ToBitmap();
-                break;
-            case IDIcon.Warning:
-                picture.Image = SystemIcons.Warning.ToBitmap();
                 break;
             case IDIcon.Nothing:
                 picture.Image = SystemIcons.WinLogo.ToBitmap();
@@ -334,9 +342,16 @@ public static class InputDialog
         return returnButtons;
     }
 
-    private static Control Cntrl(IDType type, IList<string>? listItems, string defaultText = "")
+    private static Control Cntrl(IDType type, IList<string>? listItems, bool hasIcon, string defaultText = "")
     {
         Control returnControl = new();
+        var loc = hasIcon
+            ? new Point(90, 70)
+            : new Point(10, 70);
+        var sizeWidth = hasIcon
+            ? 224
+            : 314;
+
         switch (type)
         {
             case IDType.ComboBox:
@@ -344,8 +359,8 @@ public static class InputDialog
                     listItems = new List<string> { "No Items provided!" };
                 ComboBox comboBox = new()
                 {
-                    Size = new Size(180, 22),
-                    Location = new Point(90, 70),
+                    Size = new Size(sizeWidth, 22),
+                    Location = loc,
                     DropDownStyle = ComboBoxStyle.DropDownList,
                     Name = "comboBox"
                 };
@@ -362,14 +377,14 @@ public static class InputDialog
                     {
                         comboBox.SelectedIndex = targetIndex;
                     }
-                }                
+                }
                 returnControl = comboBox;
                 break;
             case IDType.TextBox:
                 TextBox textBox = new()
                 {
-                    Size = new Size(180, 23),
-                    Location = new Point(90, 70)
+                    Size = new Size(sizeWidth, 23),
+                    Location = loc
                 };
                 textBox.KeyDown += new KeyEventHandler(TextBox_KeyDown);
                 textBox.Name = "textBox";
