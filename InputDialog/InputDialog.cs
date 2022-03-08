@@ -254,9 +254,6 @@ public static class InputDialog
             case IDIcon.Question:
                 picture.Image = SystemIcons.Question.ToBitmap();
                 break;
-            case IDIcon.Nothing:
-                picture.Image = SystemIcons.WinLogo.ToBitmap();
-                break;
         }
         picture.SizeMode = PictureBoxSizeMode.StretchImage;
         picture.Size = new Size(60, 60);
