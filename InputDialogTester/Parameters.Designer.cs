@@ -68,6 +68,9 @@
             this.txtTitle = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.txtMessage = new System.Windows.Forms.TextBox();
+            this.cmMessage = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.cmMessageTwoLineTestText = new System.Windows.Forms.ToolStripMenuItem();
+            this.longTestTextToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.label1 = new System.Windows.Forms.Label();
             this.txtResult = new System.Windows.Forms.TextBox();
             this.tt = new System.Windows.Forms.ToolTip(this.components);
@@ -86,6 +89,7 @@
             this.cmDialogInput.SuspendLayout();
             this.cmDropDowns.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            this.cmMessage.SuspendLayout();
             this.mnuMain.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -497,6 +501,7 @@
             this.cbIcon.Size = new System.Drawing.Size(223, 23);
             this.cbIcon.TabIndex = 5;
             this.tt.SetToolTip(this.cbIcon, "Right Click To Clear");
+            this.cbIcon.SelectedIndexChanged += new System.EventHandler(this.cbIcon_SelectedIndexChanged);
             this.cbIcon.MouseDown += new System.Windows.Forms.MouseEventHandler(this.SetCurrentComboBox);
             // 
             // label3
@@ -528,12 +533,36 @@
             // 
             // txtMessage
             // 
+            this.txtMessage.ContextMenuStrip = this.cmMessage;
             this.txtMessage.Location = new System.Drawing.Point(125, 9);
             this.txtMessage.Multiline = true;
             this.txtMessage.Name = "txtMessage";
             this.txtMessage.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txtMessage.Size = new System.Drawing.Size(223, 63);
             this.txtMessage.TabIndex = 1;
+            this.tt.SetToolTip(this.txtMessage, "Right click for default test text options");
+            // 
+            // cmMessage
+            // 
+            this.cmMessage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.cmMessageTwoLineTestText,
+            this.longTestTextToolStripMenuItem});
+            this.cmMessage.Name = "contextMenuStrip1";
+            this.cmMessage.Size = new System.Drawing.Size(168, 48);
+            // 
+            // cmMessageTwoLineTestText
+            // 
+            this.cmMessageTwoLineTestText.Name = "cmMessageTwoLineTestText";
+            this.cmMessageTwoLineTestText.Size = new System.Drawing.Size(167, 22);
+            this.cmMessageTwoLineTestText.Text = "Two Line Test Text";
+            this.cmMessageTwoLineTestText.Click += new System.EventHandler(this.cmMessageTwoLineTestText_Click);
+            // 
+            // longTestTextToolStripMenuItem
+            // 
+            this.longTestTextToolStripMenuItem.Name = "longTestTextToolStripMenuItem";
+            this.longTestTextToolStripMenuItem.Size = new System.Drawing.Size(167, 22);
+            this.longTestTextToolStripMenuItem.Text = "Long Test Text";
+            this.longTestTextToolStripMenuItem.Click += new System.EventHandler(this.longTestTextToolStripMenuItem_Click);
             // 
             // label1
             // 
@@ -623,6 +652,7 @@
             this.cmDropDowns.ResumeLayout(false);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.cmMessage.ResumeLayout(false);
             this.mnuMain.ResumeLayout(false);
             this.mnuMain.PerformLayout();
             this.ResumeLayout(false);
@@ -682,5 +712,8 @@
         private ToolStripMenuItem cmDialogInputReset;
         private ColorDialog cd;
         private TextBox txtComboItems;
+        private ContextMenuStrip cmMessage;
+        private ToolStripMenuItem cmMessageTwoLineTestText;
+        private ToolStripMenuItem longTestTextToolStripMenuItem;
     }
 }
