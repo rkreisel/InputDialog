@@ -25,7 +25,8 @@ public static class InputDialog
         Exclamation,
         Information,
         Question,
-        Nothing
+        Nothing,
+        Warning
     }
     public enum IDType
     {
@@ -241,6 +242,9 @@ public static class InputDialog
                 break;
             case IDIcon.Question:
                 picture.Image = SystemIcons.Question.ToBitmap();
+                break;
+            case IDIcon.Warning:
+                picture.Image = SystemIcons.Warning.ToBitmap();
                 break;
             case IDIcon.Nothing:
                 picture.Image = SystemIcons.WinLogo.ToBitmap();

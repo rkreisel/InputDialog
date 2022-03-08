@@ -171,6 +171,7 @@ namespace InputDialogTester
                 case "txtBackgroundImage":
                     txtBackgroundImage.Text = String.Empty;
                     chosenBackgroundImageFilename = null;
+                    cbImageLayout.SelectedIndex = -1;
                     break;
                 case "txtBackgroundColor":
                     txtBackgroundColor.Text = String.Empty;
@@ -188,6 +189,10 @@ namespace InputDialogTester
             if (ofd.ShowDialog() == DialogResult.OK)
             {
                 txtBackgroundImage.Text = chosenBackgroundImageFilename = ofd.FileName;
+                if (cbImageLayout.SelectedIndex == -1)
+                {
+                    cbImageLayout.SelectedIndex = 3;
+                }
             }
         }
 
@@ -260,6 +265,10 @@ namespace InputDialogTester
 
         private void cbImageLayout_SelectedValueChanged(object sender, EventArgs e)
         {
+            if (cbImageLayout.SelectedItem == null)
+            {
+                return;
+            }
             ImageLayout.TryParse(typeof(ImageLayout), cbImageLayout.SelectedItem.ToString(), out object? layoutType);
             chosenImageLayout = (ImageLayout?)layoutType;
         }
@@ -271,6 +280,29 @@ namespace InputDialogTester
             var selectorText = cbButtons.SelectedItem.ToString().Replace(" ", "").Replace("and", "").Replace(",", "");
             IDButton.TryParse(typeof(IDButton), selectorText, out object btnType);
             chosenButton = (IDButton)btnType;
+        }
+
+        private void cmMessageTwoLineTestText_Click(object sender, EventArgs e)
+        {
+            txtMessage.Text = Properties.Resources.TwoLineTestText;
+        }
+
+        private void longTestTextToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            txtMessage.Text = Properties.Resources.LongTestText;
+        }
+
+        private void cbIcon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            chosenIcon = cbIcon.SelectedIndex switch
+            {
+                0 => IDIcon.Error,
+                1 => IDIcon.Exclamation,
+                2 => IDIcon.Information,
+                3 => IDIcon.Question,
+                4 => IDIcon.Nothing,
+                _ => IDIcon.Warning
+            };
         }
     }
 }
