@@ -179,6 +179,7 @@ public static class InputDialog
 
         //Add ComboBox or TextBox to the form
         Control ctrl = Cntrl(type, listItems, icon != IDIcon.Nothing, defaultText);
+        ctrl.Size = new Size((int)(panel.Size.Width * .69), ctrl.Size.Height);
         panel.Controls.Add(ctrl);
 
         //Move cursor to the TextBox

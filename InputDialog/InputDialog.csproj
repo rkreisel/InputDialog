@@ -29,7 +29,7 @@ Also functions a a standard MessageBox.
 
 	<ItemGroup>
 	  <None Update="ReadMe.md">
-	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 	    <Pack>True</Pack>
 	    <PackagePath>\</PackagePath>
 	  </None>
