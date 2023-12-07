@@ -5,6 +5,8 @@
 using InputDialog.Utilities;
 using Microsoft.Win32;
 using System.Reflection.Metadata;
+using System.Security.Cryptography;
+using System.Windows.Forms;
 
 namespace InputDialog;
 
@@ -78,6 +80,7 @@ public static class InputDialog
         Color? backgroundColor = null)
     {
         //setup
+        
 
         //set the default Font for everything
         var fixedFormFontSize = frm.Font.Size;
@@ -105,6 +108,7 @@ public static class InputDialog
         frm.ShowInTaskbar = showInTaskBar;
         frm.FormClosing += new FormClosingEventHandler(Frm_FormClosing);
         frm.StartPosition = FormStartPosition.CenterParent;
+        frm.KeyUp += On_KeyUp;
 
         //Panel definition
         Panel panel = new()
@@ -180,6 +184,7 @@ public static class InputDialog
         //Add ComboBox or TextBox to the form
         Control ctrl = Cntrl(type, listItems, icon != IDIcon.Nothing, defaultText);
         ctrl.Size = new Size((int)(panel.Size.Width * .69), ctrl.Size.Height);
+        ctrl.KeyUp += On_KeyUp;
         panel.Controls.Add(ctrl);
 
         //Move cursor to the TextBox
@@ -326,6 +331,7 @@ public static class InputDialog
                 btn.Font = _defaultFormFont;
                 btn.BackColor = Color.White;
                 btn.ForeColor = Color.Black;
+                btn.KeyUp += On_KeyUp;
                 var tl = MeasureText(btn, btn.Text, _defaultFormFont);
 
                 //if the button text is too wide, add a tool tip with the text
@@ -391,6 +397,14 @@ public static class InputDialog
                 break;
         }
         return returnControl;
+    }
+
+    private static void On_KeyUp(object sender, KeyEventArgs e)
+    {
+        if (e.KeyCode == Keys.Escape)
+        {
+            frm.Close();
+        }
     }
 
     private static ToolTip GetTooTipControl()
