@@ -1,12 +1,16 @@
-using InputDialog; 
+using InputDialog;
+using System.Runtime.CompilerServices;
 
 namespace InputDialogUsageSample;
 
 public partial class Main : Form
 {
+    InputDialog.InputDialog.IDIcon selectedIcon = InputDialog.InputDialog.IDIcon.Question;
+
     public Main()
     {
         InitializeComponent();
+        mnuIconSelectorQuestion.Checked = true;
     }
 
     private void btnSimpleTextInput_Click(object sender, EventArgs e)
@@ -17,7 +21,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             txt,
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox);
         if (rslt.DialogResult == DialogResult.OK)
@@ -29,7 +33,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "Enter text",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox,
             defaultText: "Default Text");
@@ -42,7 +46,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "Enter text",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox,
             buttonTexts: new ButtonTexts { OKText = "Do It long button text here" });
@@ -55,7 +59,7 @@ public partial class Main : Form
         InputDialog.InputDialog.ShowDialog(
             "This is the message.",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel);
     }
 
@@ -64,7 +68,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "This is the message.",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             type: InputDialog.InputDialog.IDType.ComboBox);
         if (rslt.DialogResult == DialogResult.OK)
@@ -78,7 +82,7 @@ public partial class Main : Form
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
                 formFont: new Font(fd.Font.FontFamily, fd.Font.Size, fd.Font.Style));
@@ -92,7 +96,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "Enter Text",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox,
             backgroundColor: Color.AliceBlue);
@@ -105,7 +109,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "Enter Text",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox,
             foregroundColor: Color.Red);
@@ -118,7 +122,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "Enter Text",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox,
             foregroundColor: Color.White,
@@ -132,7 +136,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "Enter Text",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             InputDialog.InputDialog.IDType.TextBox,
             foregroundColor: Color.White,
@@ -174,5 +178,39 @@ public partial class Main : Form
             acceptsUserInput: false);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
+    }
+
+    private void mnuIconSelector_Click(object sender, EventArgs e)
+    {
+        var sndr = sender as ToolStripMenuItem;
+        var selectedItem = sndr.Text;
+        mnuIconSelectorError.Checked = false;
+        mnuIconSelectorExclamation.Checked = false;
+        mnuIconSelectorInformation.Checked = false;
+        mnuIconSelectorNone.Checked = false;
+        mnuIconSelectorQuestion.Checked = false;    
+        switch (selectedItem)
+        {
+            case "Error":
+                selectedIcon = InputDialog.InputDialog.IDIcon.Error; 
+                mnuIconSelectorError.Checked = true;
+                break;
+            case "Exclamation":
+                selectedIcon = InputDialog.InputDialog.IDIcon.Exclamation;
+                mnuIconSelectorExclamation.Checked = true;
+                break;
+            case "Information":
+                selectedIcon = InputDialog.InputDialog.IDIcon.Information;
+                mnuIconSelectorInformation.Checked = true;
+                break;
+            case "Question":
+                selectedIcon = InputDialog.InputDialog.IDIcon.Question;
+                mnuIconSelectorQuestion.Checked = true;
+                break;
+            default:
+                selectedIcon = InputDialog.InputDialog.IDIcon.Nothing;
+                mnuIconSelectorNone.Checked = true;
+                break;
+        }
     }
 }

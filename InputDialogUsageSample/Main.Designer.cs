@@ -45,7 +45,15 @@
             btnChangeBothColors = new Button();
             btnBackgroundImage = new Button();
             btnEditableComboBox = new Button();
+            mnuMain = new MenuStrip();
+            mnuIconSelctor = new ToolStripMenuItem();
+            mnuIconSelectorError = new ToolStripMenuItem();
+            mnuIconSelectorExclamation = new ToolStripMenuItem();
+            mnuIconSelectorInformation = new ToolStripMenuItem();
+            mnuIconSelectorQuestion = new ToolStripMenuItem();
+            mnuIconSelectorNone = new ToolStripMenuItem();
             cm.SuspendLayout();
+            mnuMain.SuspendLayout();
             SuspendLayout();
             // 
             // btnSimpleTextInput
@@ -185,11 +193,68 @@
             btnEditableComboBox.UseVisualStyleBackColor = true;
             btnEditableComboBox.Click += btnEditableComboBox_Click;
             // 
+            // mnuMain
+            // 
+            mnuMain.Items.AddRange(new ToolStripItem[] { mnuIconSelctor });
+            mnuMain.Location = new Point(0, 0);
+            mnuMain.Name = "mnuMain";
+            mnuMain.Size = new Size(149, 24);
+            mnuMain.TabIndex = 12;
+            mnuMain.Text = "menuStrip1";
+            // 
+            // mnuIconSelctor
+            // 
+            mnuIconSelctor.DropDownItems.AddRange(new ToolStripItem[] { mnuIconSelectorError, mnuIconSelectorExclamation, mnuIconSelectorInformation, mnuIconSelectorQuestion, mnuIconSelectorNone });
+            mnuIconSelctor.Name = "mnuIconSelctor";
+            mnuIconSelctor.Size = new Size(87, 20);
+            mnuIconSelctor.Text = "Icon Selector";
+            // 
+            // mnuIconSelectorError
+            // 
+            mnuIconSelectorError.CheckOnClick = true;
+            mnuIconSelectorError.Name = "mnuIconSelectorError";
+            mnuIconSelectorError.Size = new Size(180, 22);
+            mnuIconSelectorError.Text = "Error";
+            mnuIconSelectorError.Click += mnuIconSelector_Click;
+            // 
+            // mnuIconSelectorExclamation
+            // 
+            mnuIconSelectorExclamation.CheckOnClick = true;
+            mnuIconSelectorExclamation.Name = "mnuIconSelectorExclamation";
+            mnuIconSelectorExclamation.Size = new Size(180, 22);
+            mnuIconSelectorExclamation.Text = "Exclamation";
+            mnuIconSelectorExclamation.Click += mnuIconSelector_Click;
+            // 
+            // mnuIconSelectorInformation
+            // 
+            mnuIconSelectorInformation.CheckOnClick = true;
+            mnuIconSelectorInformation.Name = "mnuIconSelectorInformation";
+            mnuIconSelectorInformation.Size = new Size(180, 22);
+            mnuIconSelectorInformation.Text = "Information";
+            mnuIconSelectorInformation.Click += mnuIconSelector_Click;
+            // 
+            // mnuIconSelectorQuestion
+            // 
+            mnuIconSelectorQuestion.CheckOnClick = true;
+            mnuIconSelectorQuestion.Name = "mnuIconSelectorQuestion";
+            mnuIconSelectorQuestion.Size = new Size(180, 22);
+            mnuIconSelectorQuestion.Text = "Question";
+            mnuIconSelectorQuestion.Click += mnuIconSelector_Click;
+            // 
+            // mnuIconSelectorNone
+            // 
+            mnuIconSelectorNone.CheckOnClick = true;
+            mnuIconSelectorNone.Name = "mnuIconSelectorNone";
+            mnuIconSelectorNone.Size = new Size(180, 22);
+            mnuIconSelectorNone.Text = "None";
+            mnuIconSelectorNone.Click += mnuIconSelector_Click;
+            // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(149, 347);
+            Controls.Add(mnuMain);
             Controls.Add(btnEditableComboBox);
             Controls.Add(btnBackgroundImage);
             Controls.Add(btnChangeBothColors);
@@ -203,9 +268,13 @@
             Controls.Add(btnDefaultInput);
             Controls.Add(btnSimpleTextInput);
             FormBorderStyle = FormBorderStyle.FixedDialog;
+            MainMenuStrip = mnuMain;
             Name = "Main";
             cm.ResumeLayout(false);
+            mnuMain.ResumeLayout(false);
+            mnuMain.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -226,5 +295,12 @@
         private Button btnChangeBothColors;
         private Button btnBackgroundImage;
         private Button btnEditableComboBox;
+        private MenuStrip mnuMain;
+        private ToolStripMenuItem mnuIconSelctor;
+        private ToolStripMenuItem mnuIconSelectorError;
+        private ToolStripMenuItem mnuIconSelectorExclamation;
+        private ToolStripMenuItem mnuIconSelectorInformation;
+        private ToolStripMenuItem mnuIconSelectorQuestion;
+        private ToolStripMenuItem mnuIconSelectorNone;
     }
 }
