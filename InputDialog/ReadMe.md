@@ -1,4 +1,4 @@
-﻿﻿﻿# ﻿Input Dialog
+﻿# ﻿Input Dialog
 
 Input Dialog is a simple .net 6-windows, Winforms Input dialog in a nuget package.
 
@@ -73,7 +73,7 @@ https://www.nuget.org/packages/InputDialog/
                 InputDialog.InputDialog.IDButton.OkCancel);
         }
     
-        private void btnComboBox_Click(object sender, EventArgs e)
+        private void btnEditableComboBox_Click(object sender, EventArgs e)
         {
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "This is the message.",
@@ -81,11 +81,26 @@ https://www.nuget.org/packages/InputDialog/
                 InputDialog.InputDialog.IDIcon.Question,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 type: InputDialog.InputDialog.IDType.ComboBox,
-                listItems: new List<string> { "Item 1", "Item2", "Item 3" });
+                listItems: new List<string> { "Item 1", "Item2", "Item 3" },
+                acceptsUserInput: true); // Technically this is unnecessary as the default is true
             if (rslt.DialogResult == DialogResult.OK)
                 ShowResult(rslt.ResultText);
         }
-    
+        
+        private void btnLockedComboBox_Click(object sender, EventArgs e)
+        {
+            var rslt = InputDialog.InputDialog.ShowDialog(
+                "This is the message.",
+                "Title",
+                InputDialog.InputDialog.IDIcon.Question,
+                InputDialog.InputDialog.IDButton.OkCancel,
+                type: InputDialog.InputDialog.IDType.ComboBox,
+                listItems: new List<string> { "Item 1", "Item2", "Item 3" },
+                acceptsUserInput: false);
+            if (rslt.DialogResult == DialogResult.OK)
+                ShowResult(rslt.ResultText);
+        }
+        
         private void btnComboBoxWithError_Click(object sender, EventArgs e)
         {
             var rslt = InputDialog.InputDialog.ShowDialog(

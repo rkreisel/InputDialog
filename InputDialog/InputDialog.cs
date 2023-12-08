@@ -62,6 +62,7 @@ public static class InputDialog
     /// <param name="backgroundImage">A Bitmap that will be placed on the form. [null]</param>
     /// <param name="foregroundColor">A for the text. (As System,Color) [null defauilts to Black]</param>
     /// <param name="backgroundColor">A color for the background. (As System,Color) [null defaults to White]</param>
+    /// <param name="acceptsUserInput">Applies ONLY to ComboBox control. If False, the user can only select from predefined values in listItems</param>
     /// <returns>IDResult containing the DialogResult and the input/selected text</returns>
     public static IDResult ShowDialog(
         string message,
@@ -77,7 +78,8 @@ public static class InputDialog
         Image? backgroundImage = null,
         ImageLayout? backgroundImageLayout = null,
         Color? foregroundColor = null,
-        Color? backgroundColor = null)
+        Color? backgroundColor = null,
+        bool acceptsUserInput = true)
     {
         //setup
         
@@ -182,7 +184,7 @@ public static class InputDialog
             frm.Controls.Add(btn);
 
         //Add ComboBox or TextBox to the form
-        Control ctrl = Cntrl(type, listItems, icon != IDIcon.Nothing, defaultText);
+        Control ctrl = Cntrl(type, listItems, icon != IDIcon.Nothing, defaultText, acceptsUserInput);
         ctrl.Size = new Size((int)(panel.Size.Width * .69), ctrl.Size.Height);
         ctrl.KeyUp += On_KeyUp;
         panel.Controls.Add(ctrl);
@@ -346,7 +348,7 @@ public static class InputDialog
         return returnButtons;
     }
 
-    private static Control Cntrl(IDType type, IList<string>? listItems, bool hasIcon, string defaultText = "")
+    private static Control Cntrl(IDType type, IList<string>? listItems, bool hasIcon, string defaultText = "", bool acceptsUserInput = true)
     {
         Control returnControl = new();
         var loc = hasIcon
@@ -365,7 +367,7 @@ public static class InputDialog
                 {
                     Size = new Size(sizeWidth, 22),
                     Location = loc,
-                    DropDownStyle = ComboBoxStyle.DropDownList,
+                    DropDownStyle = acceptsUserInput ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList,
                     Name = "comboBox"
                 };
                 if (listItems != null)

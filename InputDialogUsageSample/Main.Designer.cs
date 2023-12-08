@@ -28,174 +28,184 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            this.btnSimpleTextInput = new System.Windows.Forms.Button();
-            this.cm = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.cmLongText = new System.Windows.Forms.ToolStripMenuItem();
-            this.btnDefaultInput = new System.Windows.Forms.Button();
-            this.btnChangeButtonName = new System.Windows.Forms.Button();
-            this.btnSimpleMsgBox = new System.Windows.Forms.Button();
-            this.btnComboBox = new System.Windows.Forms.Button();
-            this.btnComboBoxWithError = new System.Windows.Forms.Button();
-            this.btnChangeFont = new System.Windows.Forms.Button();
-            this.fd = new System.Windows.Forms.FontDialog();
-            this.tt = new System.Windows.Forms.ToolTip(this.components);
-            this.btnChangeBackColor = new System.Windows.Forms.Button();
-            this.btnChangeForeColor = new System.Windows.Forms.Button();
-            this.btnChangeBothColors = new System.Windows.Forms.Button();
-            this.btnBackgroundImage = new System.Windows.Forms.Button();
-            this.cm.SuspendLayout();
-            this.SuspendLayout();
+            components = new System.ComponentModel.Container();
+            btnSimpleTextInput = new Button();
+            cm = new ContextMenuStrip(components);
+            cmLongText = new ToolStripMenuItem();
+            btnDefaultInput = new Button();
+            btnChangeButtonName = new Button();
+            btnSimpleMsgBox = new Button();
+            btnLockedComboBox = new Button();
+            btnComboBoxWithError = new Button();
+            btnChangeFont = new Button();
+            fd = new FontDialog();
+            tt = new ToolTip(components);
+            btnChangeBackColor = new Button();
+            btnChangeForeColor = new Button();
+            btnChangeBothColors = new Button();
+            btnBackgroundImage = new Button();
+            btnEditableComboBox = new Button();
+            cm.SuspendLayout();
+            SuspendLayout();
             // 
             // btnSimpleTextInput
             // 
-            this.btnSimpleTextInput.ContextMenuStrip = this.cm;
-            this.btnSimpleTextInput.Location = new System.Drawing.Point(3, 2);
-            this.btnSimpleTextInput.Name = "btnSimpleTextInput";
-            this.btnSimpleTextInput.Size = new System.Drawing.Size(143, 23);
-            this.btnSimpleTextInput.TabIndex = 0;
-            this.btnSimpleTextInput.Text = "Simple Text Input";
-            this.tt.SetToolTip(this.btnSimpleTextInput, "Right click to enable long text input test");
-            this.btnSimpleTextInput.UseVisualStyleBackColor = true;
-            this.btnSimpleTextInput.Click += new System.EventHandler(this.btnSimpleTextInput_Click);
+            btnSimpleTextInput.ContextMenuStrip = cm;
+            btnSimpleTextInput.Location = new Point(3, 2);
+            btnSimpleTextInput.Name = "btnSimpleTextInput";
+            btnSimpleTextInput.Size = new Size(143, 23);
+            btnSimpleTextInput.TabIndex = 0;
+            btnSimpleTextInput.Text = "Simple Text Input";
+            tt.SetToolTip(btnSimpleTextInput, "Right click to enable long text input test");
+            btnSimpleTextInput.UseVisualStyleBackColor = true;
+            btnSimpleTextInput.Click += btnSimpleTextInput_Click;
             // 
             // cm
             // 
-            this.cm.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.cmLongText});
-            this.cm.Name = "cm";
-            this.cm.ShowCheckMargin = true;
-            this.cm.Size = new System.Drawing.Size(141, 26);
+            cm.Items.AddRange(new ToolStripItem[] { cmLongText });
+            cm.Name = "cm";
+            cm.ShowCheckMargin = true;
+            cm.Size = new Size(141, 26);
             // 
             // cmLongText
             // 
-            this.cmLongText.CheckOnClick = true;
-            this.cmLongText.Name = "cmLongText";
-            this.cmLongText.ShowShortcutKeys = false;
-            this.cmLongText.Size = new System.Drawing.Size(140, 22);
-            this.cmLongText.Text = "Long Text";
+            cmLongText.CheckOnClick = true;
+            cmLongText.Name = "cmLongText";
+            cmLongText.ShowShortcutKeys = false;
+            cmLongText.Size = new Size(140, 22);
+            cmLongText.Text = "Long Text";
             // 
             // btnDefaultInput
             // 
-            this.btnDefaultInput.Location = new System.Drawing.Point(3, 31);
-            this.btnDefaultInput.Name = "btnDefaultInput";
-            this.btnDefaultInput.Size = new System.Drawing.Size(143, 23);
-            this.btnDefaultInput.TabIndex = 1;
-            this.btnDefaultInput.Text = "Text Input w/default";
-            this.btnDefaultInput.UseVisualStyleBackColor = true;
-            this.btnDefaultInput.Click += new System.EventHandler(this.btnDefaultInput_Click);
+            btnDefaultInput.Location = new Point(3, 31);
+            btnDefaultInput.Name = "btnDefaultInput";
+            btnDefaultInput.Size = new Size(143, 23);
+            btnDefaultInput.TabIndex = 1;
+            btnDefaultInput.Text = "Text Input w/default";
+            btnDefaultInput.UseVisualStyleBackColor = true;
+            btnDefaultInput.Click += btnDefaultInput_Click;
             // 
             // btnChangeButtonName
             // 
-            this.btnChangeButtonName.Location = new System.Drawing.Point(3, 60);
-            this.btnChangeButtonName.Name = "btnChangeButtonName";
-            this.btnChangeButtonName.Size = new System.Drawing.Size(143, 23);
-            this.btnChangeButtonName.TabIndex = 2;
-            this.btnChangeButtonName.Text = "Change a button text";
-            this.btnChangeButtonName.UseVisualStyleBackColor = true;
-            this.btnChangeButtonName.Click += new System.EventHandler(this.btnChangeButtonName_Click);
+            btnChangeButtonName.Location = new Point(3, 60);
+            btnChangeButtonName.Name = "btnChangeButtonName";
+            btnChangeButtonName.Size = new Size(143, 23);
+            btnChangeButtonName.TabIndex = 2;
+            btnChangeButtonName.Text = "Change a button text";
+            btnChangeButtonName.UseVisualStyleBackColor = true;
+            btnChangeButtonName.Click += btnChangeButtonName_Click;
             // 
             // btnSimpleMsgBox
             // 
-            this.btnSimpleMsgBox.Location = new System.Drawing.Point(3, 89);
-            this.btnSimpleMsgBox.Name = "btnSimpleMsgBox";
-            this.btnSimpleMsgBox.Size = new System.Drawing.Size(143, 23);
-            this.btnSimpleMsgBox.TabIndex = 3;
-            this.btnSimpleMsgBox.Text = "Simple Message Box";
-            this.btnSimpleMsgBox.UseVisualStyleBackColor = true;
-            this.btnSimpleMsgBox.Click += new System.EventHandler(this.btnSimpleMsgBox_Click);
+            btnSimpleMsgBox.Location = new Point(3, 89);
+            btnSimpleMsgBox.Name = "btnSimpleMsgBox";
+            btnSimpleMsgBox.Size = new Size(143, 23);
+            btnSimpleMsgBox.TabIndex = 3;
+            btnSimpleMsgBox.Text = "Simple Message Box";
+            btnSimpleMsgBox.UseVisualStyleBackColor = true;
+            btnSimpleMsgBox.Click += btnSimpleMsgBox_Click;
             // 
-            // btnComboBox
+            // btnLockedComboBox
             // 
-            this.btnComboBox.Location = new System.Drawing.Point(3, 118);
-            this.btnComboBox.Name = "btnComboBox";
-            this.btnComboBox.Size = new System.Drawing.Size(143, 23);
-            this.btnComboBox.TabIndex = 4;
-            this.btnComboBox.Text = "Combo Box";
-            this.btnComboBox.UseVisualStyleBackColor = true;
-            this.btnComboBox.Click += new System.EventHandler(this.btnComboBox_Click);
+            btnLockedComboBox.Location = new Point(3, 118);
+            btnLockedComboBox.Name = "btnLockedComboBox";
+            btnLockedComboBox.Size = new Size(143, 23);
+            btnLockedComboBox.TabIndex = 4;
+            btnLockedComboBox.Text = "Locked Combo Box";
+            btnLockedComboBox.UseVisualStyleBackColor = true;
+            btnLockedComboBox.Click += btnLockedComboBox_Click;
             // 
             // btnComboBoxWithError
             // 
-            this.btnComboBoxWithError.Location = new System.Drawing.Point(3, 147);
-            this.btnComboBoxWithError.Name = "btnComboBoxWithError";
-            this.btnComboBoxWithError.Size = new System.Drawing.Size(143, 23);
-            this.btnComboBoxWithError.TabIndex = 5;
-            this.btnComboBoxWithError.Text = "Combo Box w/Error";
-            this.btnComboBoxWithError.UseVisualStyleBackColor = true;
-            this.btnComboBoxWithError.Click += new System.EventHandler(this.btnComboBoxWithError_Click);
+            btnComboBoxWithError.Location = new Point(3, 176);
+            btnComboBoxWithError.Name = "btnComboBoxWithError";
+            btnComboBoxWithError.Size = new Size(143, 23);
+            btnComboBoxWithError.TabIndex = 5;
+            btnComboBoxWithError.Text = "Combo Box w/Error";
+            btnComboBoxWithError.UseVisualStyleBackColor = true;
+            btnComboBoxWithError.Click += btnComboBoxWithError_Click;
             // 
             // btnChangeFont
             // 
-            this.btnChangeFont.Location = new System.Drawing.Point(3, 176);
-            this.btnChangeFont.Name = "btnChangeFont";
-            this.btnChangeFont.Size = new System.Drawing.Size(143, 23);
-            this.btnChangeFont.TabIndex = 6;
-            this.btnChangeFont.Text = "Change Font";
-            this.btnChangeFont.UseVisualStyleBackColor = true;
-            this.btnChangeFont.Click += new System.EventHandler(this.btnChangeFont_Click);
+            btnChangeFont.Location = new Point(3, 205);
+            btnChangeFont.Name = "btnChangeFont";
+            btnChangeFont.Size = new Size(143, 23);
+            btnChangeFont.TabIndex = 6;
+            btnChangeFont.Text = "Change Font";
+            btnChangeFont.UseVisualStyleBackColor = true;
+            btnChangeFont.Click += btnChangeFont_Click;
             // 
             // btnChangeBackColor
             // 
-            this.btnChangeBackColor.Location = new System.Drawing.Point(3, 205);
-            this.btnChangeBackColor.Name = "btnChangeBackColor";
-            this.btnChangeBackColor.Size = new System.Drawing.Size(143, 23);
-            this.btnChangeBackColor.TabIndex = 7;
-            this.btnChangeBackColor.Text = "Change Back Color";
-            this.btnChangeBackColor.UseVisualStyleBackColor = true;
-            this.btnChangeBackColor.Click += new System.EventHandler(this.btnChangeBackColor_Click);
+            btnChangeBackColor.Location = new Point(3, 234);
+            btnChangeBackColor.Name = "btnChangeBackColor";
+            btnChangeBackColor.Size = new Size(143, 23);
+            btnChangeBackColor.TabIndex = 7;
+            btnChangeBackColor.Text = "Change Back Color";
+            btnChangeBackColor.UseVisualStyleBackColor = true;
+            btnChangeBackColor.Click += btnChangeBackColor_Click;
             // 
             // btnChangeForeColor
             // 
-            this.btnChangeForeColor.Location = new System.Drawing.Point(3, 234);
-            this.btnChangeForeColor.Name = "btnChangeForeColor";
-            this.btnChangeForeColor.Size = new System.Drawing.Size(143, 23);
-            this.btnChangeForeColor.TabIndex = 8;
-            this.btnChangeForeColor.Text = "Change Fore Color";
-            this.btnChangeForeColor.UseVisualStyleBackColor = true;
-            this.btnChangeForeColor.Click += new System.EventHandler(this.btnChangeForeColor_Click);
+            btnChangeForeColor.Location = new Point(3, 263);
+            btnChangeForeColor.Name = "btnChangeForeColor";
+            btnChangeForeColor.Size = new Size(143, 23);
+            btnChangeForeColor.TabIndex = 8;
+            btnChangeForeColor.Text = "Change Fore Color";
+            btnChangeForeColor.UseVisualStyleBackColor = true;
+            btnChangeForeColor.Click += btnChangeForeColor_Click;
             // 
             // btnChangeBothColors
             // 
-            this.btnChangeBothColors.Location = new System.Drawing.Point(3, 263);
-            this.btnChangeBothColors.Name = "btnChangeBothColors";
-            this.btnChangeBothColors.Size = new System.Drawing.Size(143, 23);
-            this.btnChangeBothColors.TabIndex = 9;
-            this.btnChangeBothColors.Text = "Change Both Colors";
-            this.btnChangeBothColors.UseVisualStyleBackColor = true;
-            this.btnChangeBothColors.Click += new System.EventHandler(this.btnChangeBothColors_Click);
+            btnChangeBothColors.Location = new Point(3, 292);
+            btnChangeBothColors.Name = "btnChangeBothColors";
+            btnChangeBothColors.Size = new Size(143, 23);
+            btnChangeBothColors.TabIndex = 9;
+            btnChangeBothColors.Text = "Change Both Colors";
+            btnChangeBothColors.UseVisualStyleBackColor = true;
+            btnChangeBothColors.Click += btnChangeBothColors_Click;
             // 
             // btnBackgroundImage
             // 
-            this.btnBackgroundImage.Location = new System.Drawing.Point(3, 292);
-            this.btnBackgroundImage.Name = "btnBackgroundImage";
-            this.btnBackgroundImage.Size = new System.Drawing.Size(143, 23);
-            this.btnBackgroundImage.TabIndex = 10;
-            this.btnBackgroundImage.Text = "Add BG Image";
-            this.btnBackgroundImage.UseVisualStyleBackColor = true;
-            this.btnBackgroundImage.Click += new System.EventHandler(this.btnBackgroundImage_Click);
+            btnBackgroundImage.Location = new Point(3, 321);
+            btnBackgroundImage.Name = "btnBackgroundImage";
+            btnBackgroundImage.Size = new Size(143, 23);
+            btnBackgroundImage.TabIndex = 10;
+            btnBackgroundImage.Text = "Add BG Image";
+            btnBackgroundImage.UseVisualStyleBackColor = true;
+            btnBackgroundImage.Click += btnBackgroundImage_Click;
+            // 
+            // btnEditableComboBox
+            // 
+            btnEditableComboBox.Location = new Point(3, 147);
+            btnEditableComboBox.Name = "btnEditableComboBox";
+            btnEditableComboBox.Size = new Size(143, 23);
+            btnEditableComboBox.TabIndex = 11;
+            btnEditableComboBox.Text = "Editable Combo Box";
+            btnEditableComboBox.UseVisualStyleBackColor = true;
+            btnEditableComboBox.Click += btnEditableComboBox_Click;
             // 
             // Main
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(149, 322);
-            this.Controls.Add(this.btnBackgroundImage);
-            this.Controls.Add(this.btnChangeBothColors);
-            this.Controls.Add(this.btnChangeForeColor);
-            this.Controls.Add(this.btnChangeBackColor);
-            this.Controls.Add(this.btnChangeFont);
-            this.Controls.Add(this.btnComboBoxWithError);
-            this.Controls.Add(this.btnComboBox);
-            this.Controls.Add(this.btnSimpleMsgBox);
-            this.Controls.Add(this.btnChangeButtonName);
-            this.Controls.Add(this.btnDefaultInput);
-            this.Controls.Add(this.btnSimpleTextInput);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.Name = "Main";
-            this.cm.ResumeLayout(false);
-            this.ResumeLayout(false);
-
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            ClientSize = new Size(149, 347);
+            Controls.Add(btnEditableComboBox);
+            Controls.Add(btnBackgroundImage);
+            Controls.Add(btnChangeBothColors);
+            Controls.Add(btnChangeForeColor);
+            Controls.Add(btnChangeBackColor);
+            Controls.Add(btnChangeFont);
+            Controls.Add(btnComboBoxWithError);
+            Controls.Add(btnLockedComboBox);
+            Controls.Add(btnSimpleMsgBox);
+            Controls.Add(btnChangeButtonName);
+            Controls.Add(btnDefaultInput);
+            Controls.Add(btnSimpleTextInput);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Name = "Main";
+            cm.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         #endregion
@@ -204,7 +214,7 @@
         private Button btnDefaultInput;
         private Button btnChangeButtonName;
         private Button btnSimpleMsgBox;
-        private Button btnComboBox;
+        private Button btnLockedComboBox;
         private Button btnComboBoxWithError;
         private Button btnChangeFont;
         private FontDialog fd;
@@ -215,5 +225,6 @@
         private Button btnChangeForeColor;
         private Button btnChangeBothColors;
         private Button btnBackgroundImage;
+        private Button btnEditableComboBox;
     }
 }
