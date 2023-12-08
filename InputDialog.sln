@@ -7,7 +7,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputDialog", "InputDialog\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputDialogUsageSample", "InputDialogUsageSample\InputDialogUsageSample.csproj", "{A5C4FFBC-893D-48B7-82B0-C589989ED758}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputDialogTester", "InputDialogTester\InputDialogTester.csproj", "{A9947543-7161-440A-B56F-AEE8BD82EB3C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputDialogTester", "InputDialogTester\InputDialogTester.csproj", "{A9947543-7161-440A-B56F-AEE8BD82EB3C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB767E00-F776-47D3-9212-484AAE488E0B}"
+	ProjectSection(SolutionItems) = preProject
+		PAT keys.txt = PAT keys.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
