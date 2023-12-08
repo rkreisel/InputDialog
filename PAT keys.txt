@@ -1,5 +1,8 @@
 github PAT 20231209 (no expiration date)
-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
+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
+
+Fine Grained version expires 12/9/2024
+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
 
 Nuget API key eff 20231208
 oy2ccmurgkwnioj3hyratx5npx776fgunhatltsuqfjgtu
