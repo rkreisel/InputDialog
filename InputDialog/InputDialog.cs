@@ -152,8 +152,8 @@ public static class InputDialog
                 BackColor = Color.White,
                 ScrollBars = ScrollBars.Vertical,
                 Width = icon == IDIcon.Nothing
-                ? 314
-                : 224
+                ? (int) (panel.Width * .93) //314
+                : (int) (panel.Width * .69) //224
             };
             //Set label font
             text.Font = formFont ?? _defaultFormFont;
@@ -186,6 +186,10 @@ public static class InputDialog
         //Add ComboBox or TextBox to the form
         Control ctrl = Cntrl(type, listItems, icon != IDIcon.Nothing, defaultText, acceptsUserInput);
         ctrl.Size = new Size((int)(panel.Size.Width * .69), ctrl.Size.Height);
+        if (icon == IDIcon.Nothing)
+        {
+            ctrl.Width = (int) (panel.Width * .93);
+        }
         ctrl.KeyUp += On_KeyUp;
         panel.Controls.Add(ctrl);
 
@@ -395,6 +399,8 @@ public static class InputDialog
                 textBox.KeyDown += new KeyEventHandler(TextBox_KeyDown);
                 textBox.Name = "textBox";
                 textBox.Text = defaultText;
+                textBox.Multiline = true;
+                textBox.ScrollBars = ScrollBars.Vertical;
                 returnControl = textBox;
                 break;
         }
