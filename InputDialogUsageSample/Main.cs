@@ -157,7 +157,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
            "This is the message.",
            "Title",
-           InputDialog.InputDialog.IDIcon.Question,
+           selectedIcon,
            InputDialog.InputDialog.IDButton.OkCancel,
            type: InputDialog.InputDialog.IDType.ComboBox,
            listItems: new List<string> { "Item 1", "Item2", "Item 3" },
@@ -171,7 +171,7 @@ public partial class Main : Form
         var rslt = InputDialog.InputDialog.ShowDialog(
             "This is the message.",
             "Title",
-            InputDialog.InputDialog.IDIcon.Question,
+            selectedIcon,
             InputDialog.InputDialog.IDButton.OkCancel,
             type: InputDialog.InputDialog.IDType.ComboBox,
             listItems: new List<string> { "Item 1", "Item2", "Item 3" },
