@@ -10,9 +10,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InputDialogTester", "InputDialogTester\InputDialogTester.csproj", "{A9947543-7161-440A-B56F-AEE8BD82EB3C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CB767E00-F776-47D3-9212-484AAE488E0B}"
-	ProjectSection(SolutionItems) = preProject
-		PAT keys.txt = PAT keys.txt
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
