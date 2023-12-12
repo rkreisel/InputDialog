@@ -15,6 +15,7 @@ namespace InputDialogTester
         private IDButton chosenButton;
         private IDType chosenType;
         private ImageLayout? chosenImageLayout;
+        private bool acceptsUserInput = false;
 
         public Parameters()
         {
@@ -242,7 +243,8 @@ namespace InputDialogTester
                 backgroundImage: bgImage,
                 backgroundImageLayout: chosenImageLayout,
                 foregroundColor: chosenForegroundColor,
-                backgroundColor: chosenBackgroundColor); ;
+                backgroundColor: chosenBackgroundColor,
+                acceptsUserInput: acceptsUserInput); 
             if (rslt.DialogResult == DialogResult.OK)
                 txtResult.Text = rslt.ResultText;
         }
@@ -251,8 +253,13 @@ namespace InputDialogTester
         {
             switch (cbPrompt.SelectedItem.ToString())
             {
-                case "Combo Box":
+                case "Locked Combo Box":
                     chosenType = IDType.ComboBox;
+                    acceptsUserInput = false;
+                    break;
+                case "Editable Combo Box":
+                    chosenType = IDType.ComboBox;
+                    acceptsUserInput = true;
                     break;
                 case "Text Box":
                     chosenType = IDType.TextBox;
