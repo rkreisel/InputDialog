@@ -62,7 +62,7 @@ namespace InputDialogTester
 
         public void SetDefaultPromptType()
         {
-            cbPrompt.SelectedItem = cbPrompt.SelectedItem = cbPrompt.Items[2];
+            cbPrompt.SelectedItem = cbPrompt.SelectedItem = cbPrompt.Items[3];
             chosenType = IDType.MsgBox;
         }
 
