@@ -82,7 +82,7 @@ public static class InputDialog
         bool acceptsUserInput = true)
     {
         //setup
-        
+
 
         //set the default Font for everything
         var fixedFormFontSize = frm.Font.Size;
@@ -108,7 +108,6 @@ public static class InputDialog
         frm.Text = title;
         frm.ShowIcon = false;
         frm.ShowInTaskbar = showInTaskBar;
-        frm.FormClosing += new FormClosingEventHandler(Frm_FormClosing);
         frm.StartPosition = FormStartPosition.CenterParent;
         frm.KeyUp += On_KeyUp;
 
@@ -152,8 +151,8 @@ public static class InputDialog
                 BackColor = Color.White,
                 ScrollBars = ScrollBars.Vertical,
                 Width = icon == IDIcon.Nothing
-                ? (int) (panel.Width * .93) //314
-                : (int) (panel.Width * .69) //224
+                ? (int)(panel.Width * .93) //314
+                : (int)(panel.Width * .69) //224
             };
             //Set label font
             text.Font = formFont ?? _defaultFormFont;
@@ -188,7 +187,7 @@ public static class InputDialog
         ctrl.Size = new Size((int)(panel.Size.Width * .69), ctrl.Size.Height);
         if (icon == IDIcon.Nothing)
         {
-            ctrl.Width = (int) (panel.Width * .93);
+            ctrl.Width = (int)(panel.Width * .93);
         }
         ctrl.KeyUp += On_KeyUp;
         panel.Controls.Add(ctrl);
@@ -244,8 +243,25 @@ public static class InputDialog
         }
     }
 
-    private static void Frm_FormClosing(object sender, FormClosingEventArgs e)
+    private static void ComboBox_KeyDown(object sender, KeyEventArgs e)
     {
+        if (e.KeyCode == Keys.Enter)
+        {
+            //Check for a 'positive response' button (ie. either Ok or Yes). If found, click it.
+            var ctrl = frm.Controls.Find("OK", true);
+            if (ctrl != null && ctrl.Length < 1)
+            {
+                ctrl = frm.Controls.Find("Yes", true);
+            }
+            if (ctrl != null && ctrl.Length > 0)
+            {
+                if (ctrl[0] is Button)
+                {
+                    var trgtBtn = (Button)ctrl[0];
+                    trgtBtn.PerformClick();
+                }
+            }
+        }
     }
 
     private static PictureBox Picture(IDIcon icon)
@@ -388,6 +404,7 @@ public static class InputDialog
                         comboBox.SelectedIndex = targetIndex;
                     }
                 }
+                comboBox.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
                 returnControl = comboBox;
                 break;
             case IDType.TextBox:
