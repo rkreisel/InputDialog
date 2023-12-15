@@ -18,9 +18,12 @@ https://www.nuget.org/packages/InputDialog/
     
     public partial class Main : Form
     {
+        InputDialog.InputDialog.IDIcon selectedIcon = InputDialog.InputDialog.IDIcon.Question;
+    
         public Main()
         {
             InitializeComponent();
+            mnuIconSelectorQuestion.Checked = true;
         }
     
         private void btnSimpleTextInput_Click(object sender, EventArgs e)
@@ -31,7 +34,7 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 txt,
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox);
             if (rslt.DialogResult == DialogResult.OK)
@@ -43,7 +46,7 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
                 defaultText: "Default Text");
@@ -56,57 +59,29 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
-                buttonTexts: new ButtonTexts { OKText = "Do It!" });
+                buttonTexts: new ButtonTexts { OKText = "Do It long button text here" });
             if (rslt.DialogResult == DialogResult.OK)
                 ShowResult(rslt.ResultText);
         }
     
         private void btnSimpleMsgBox_Click(object sender, EventArgs e)
         {
-            var rslt = InputDialog.InputDialog.ShowDialog(
+            InputDialog.InputDialog.ShowDialog(
                 "This is the message.",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel);
         }
     
-        private void btnEditableComboBox_Click(object sender, EventArgs e)
-        {
-            var rslt = InputDialog.InputDialog.ShowDialog(
-                "This is the message.",
-                "Title",
-                InputDialog.InputDialog.IDIcon.Question,
-                InputDialog.InputDialog.IDButton.OkCancel,
-                type: InputDialog.InputDialog.IDType.ComboBox,
-                listItems: new List<string> { "Item 1", "Item2", "Item 3" },
-                acceptsUserInput: true); // Technically this is unnecessary as the default is true
-            if (rslt.DialogResult == DialogResult.OK)
-                ShowResult(rslt.ResultText);
-        }
-        
-        private void btnLockedComboBox_Click(object sender, EventArgs e)
-        {
-            var rslt = InputDialog.InputDialog.ShowDialog(
-                "This is the message.",
-                "Title",
-                InputDialog.InputDialog.IDIcon.Question,
-                InputDialog.InputDialog.IDButton.OkCancel,
-                type: InputDialog.InputDialog.IDType.ComboBox,
-                listItems: new List<string> { "Item 1", "Item2", "Item 3" },
-                acceptsUserInput: false);
-            if (rslt.DialogResult == DialogResult.OK)
-                ShowResult(rslt.ResultText);
-        }
-        
         private void btnComboBoxWithError_Click(object sender, EventArgs e)
         {
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "This is the message.",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 type: InputDialog.InputDialog.IDType.ComboBox);
             if (rslt.DialogResult == DialogResult.OK)
@@ -120,7 +95,7 @@ https://www.nuget.org/packages/InputDialog/
                 var rslt = InputDialog.InputDialog.ShowDialog(
                     "Enter text",
                     "Title",
-                    InputDialog.InputDialog.IDIcon.Question,
+                    selectedIcon,
                     InputDialog.InputDialog.IDButton.OkCancel,
                     InputDialog.InputDialog.IDType.TextBox,
                     formFont: new Font(fd.Font.FontFamily, fd.Font.Size, fd.Font.Style));
@@ -134,7 +109,7 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter Text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
                 backgroundColor: Color.AliceBlue);
@@ -147,7 +122,7 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter Text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
                 foregroundColor: Color.Red);
@@ -160,7 +135,7 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter Text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
                 foregroundColor: Color.White,
@@ -174,12 +149,12 @@ https://www.nuget.org/packages/InputDialog/
             var rslt = InputDialog.InputDialog.ShowDialog(
                 "Enter Text",
                 "Title",
-                InputDialog.InputDialog.IDIcon.Question,
+                selectedIcon,
                 InputDialog.InputDialog.IDButton.OkCancel,
                 InputDialog.InputDialog.IDType.TextBox,
                 foregroundColor: Color.White,
                 formFont: new Font("Arial", 28, FontStyle.Bold),
-                backgroundImage: Image.FromFile(@"Images\Picture2.jpg"),
+                backgroundImage: Image.FromFile(@"Images\Picture.jpg"),
                 backgroundImageLayout: ImageLayout.Stretch);
             if (rslt.DialogResult == DialogResult.OK)
                 ShowResult(rslt.ResultText);
@@ -189,5 +164,68 @@ https://www.nuget.org/packages/InputDialog/
         {
             MessageBox.Show(rslt, "InputDialog Result", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
+    
+        private void btnEditableComboBox_Click(object sender, EventArgs e)
+        {
+            var rslt = InputDialog.InputDialog.ShowDialog(
+               "This is the message.",
+               "Title",
+               selectedIcon,
+               InputDialog.InputDialog.IDButton.OkCancel,
+               type: InputDialog.InputDialog.IDType.ComboBox,
+               listItems: new List<string> { "Item 1", "Item2", "Item 3" },
+               acceptsUserInput: true);
+            if (rslt.DialogResult == DialogResult.OK)
+                ShowResult(rslt.ResultText);
+        }
+    
+        private void btnLockedComboBox_Click(object sender, EventArgs e)
+        {
+            var rslt = InputDialog.InputDialog.ShowDialog(
+                "This is the message.",
+                "Title",
+                selectedIcon,
+                InputDialog.InputDialog.IDButton.OkCancel,
+                type: InputDialog.InputDialog.IDType.ComboBox,
+                listItems: new List<string> { "Item 1", "Item2", "Item 3" },
+                acceptsUserInput: false);
+            if (rslt.DialogResult == DialogResult.OK)
+                ShowResult(rslt.ResultText);
+        }
+    
+        private void mnuIconSelector_Click(object sender, EventArgs e)
+        {
+            var sndr = sender as ToolStripMenuItem;
+            mnuIconSelectorError.Checked = false;
+            mnuIconSelectorExclamation.Checked = false;
+            mnuIconSelectorInformation.Checked = false;
+            mnuIconSelectorNone.Checked = false;
+            mnuIconSelectorQuestion.Checked = false;
+            var selectedItem = sndr?.Text;
+            switch (selectedItem)
+            {
+                case "Error":
+                    selectedIcon = InputDialog.InputDialog.IDIcon.Error;
+                    mnuIconSelectorError.Checked = true;
+                    break;
+                case "Exclamation":
+                    selectedIcon = InputDialog.InputDialog.IDIcon.Exclamation;
+                    mnuIconSelectorExclamation.Checked = true;
+                    break;
+                case "Information":
+                    selectedIcon = InputDialog.InputDialog.IDIcon.Information;
+                    mnuIconSelectorInformation.Checked = true;
+                    break;
+                case "Question":
+                    selectedIcon = InputDialog.InputDialog.IDIcon.Question;
+                    mnuIconSelectorQuestion.Checked = true;
+                    break;
+                default:
+                    selectedIcon = InputDialog.InputDialog.IDIcon.Nothing;
+                    mnuIconSelectorNone.Checked = true;
+                    break;
+            }
+        }
     }
+    
 
