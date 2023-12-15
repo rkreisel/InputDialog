@@ -11,6 +11,7 @@ https://www.nuget.org/packages/InputDialog/
 See the sample usage apps in GitHub 
 
 - https://github.com/rkreisel/InputDialog/tree/main/InputDialog
+- https://github.com/rkreisel/InputDialog/tree/main/InputDialogTester
 - https://github.com/rkreisel/InputDialog/tree/main/InputDialogUsageSample
 
 
