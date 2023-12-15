@@ -6,14 +6,15 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
 		<GeneratePackageOnBuild>True</GeneratePackageOnBuild>
-		<Version>1.2.9</Version>
+		<Version>1.2.10</Version>
 		<Description>A simple dialog box to capture user input. Supports a single string input or selection of a value from a dropdown box.
 Also functions a a standard MessageBox.
 
 20220202 - Enabled a scrolling textbox if message is too long.
 20220213 - Updated XML comments
 20220308 - Enable no icon and adjusted sizes of other elements accordingly
-20231214 - Fixed combobox Enter key = click Ok button (if exists)</Description>
+20231214 - Fixed combobox Enter key = click Ok button (if exists)
+20231215 - Code Cleanup only (no true updates)</Description>
 		<Copyright>House on the Rock Software</Copyright>
 		<PackageProjectUrl>https://github.com/rkreisel/InputDialog</PackageProjectUrl>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>

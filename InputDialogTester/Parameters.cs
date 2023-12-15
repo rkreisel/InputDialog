@@ -126,21 +126,24 @@ namespace InputDialogTester
 
         private void cmDropDownsReset_Click(object sender, EventArgs e)
         {
-            switch (currentComboBox.Name)
+            if (currentComboBox != null)
             {
-                case "cbIcon":
-                    SetDefaultIcon();
-                    break;
-                case "cbButtons":
-                    SetDefaultButton();
-                    break;
-                case "cbPrompt":
-                    SetDefaultPromptType();
-                    SetDefaultPromptItems();
-                    break;
-                case "cbImageLayout":
-                    SetDefaultImageLayout();
-                    break;
+                switch (currentComboBox.Name)
+                {
+                    case "cbIcon":
+                        SetDefaultIcon();
+                        break;
+                    case "cbButtons":
+                        SetDefaultButton();
+                        break;
+                    case "cbPrompt":
+                        SetDefaultPromptType();
+                        SetDefaultPromptItems();
+                        break;
+                    case "cbImageLayout":
+                        SetDefaultImageLayout();
+                        break;
+                }
             }
         }
 
@@ -218,14 +221,14 @@ namespace InputDialogTester
 
         private void btnShowDialog_Click(object sender, EventArgs e)
         {
-            ButtonTexts btnTxts = new ButtonTexts
+            ButtonTexts btnTxts = new()
             {
                 CancelText = txtCancelButton.Text,
                 NoText = txtNoButton.Text,
                 OKText = txtOkButton.Text,
                 YesText = txtYesButton.Text,
             };
-            Image bgImage = string.IsNullOrEmpty(chosenBackgroundImageFilename)
+            Image? bgImage = string.IsNullOrEmpty(chosenBackgroundImageFilename)
                 ? null
                 : Image.FromFile(chosenBackgroundImageFilename);
 
@@ -244,7 +247,7 @@ namespace InputDialogTester
                 backgroundImageLayout: chosenImageLayout,
                 foregroundColor: chosenForegroundColor,
                 backgroundColor: chosenBackgroundColor,
-                acceptsUserInput: acceptsUserInput); 
+                acceptsUserInput: acceptsUserInput);
             if (rslt.DialogResult == DialogResult.OK)
                 txtResult.Text = rslt.ResultText;
         }
@@ -284,9 +287,10 @@ namespace InputDialogTester
         {
             if (cbButtons.SelectedItem == null)
                 return;
-            var selectorText = cbButtons.SelectedItem.ToString().Replace(" ", "").Replace("and", "").Replace(",", "");
-            IDButton.TryParse(typeof(IDButton), selectorText, out object btnType);
-            chosenButton = (IDButton)btnType;
+            var selectorText = cbButtons.SelectedItem.ToString()?.Replace(" ", "").Replace("and", "").Replace(",", "");
+            IDButton.TryParse(typeof(IDButton), selectorText, out object? btnType);
+            if (btnType != null)
+                chosenButton = (IDButton)btnType;
         }
 
         private void cmMessageTwoLineTestText_Click(object sender, EventArgs e)

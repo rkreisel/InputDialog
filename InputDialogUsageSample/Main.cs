@@ -1,5 +1,4 @@
 using InputDialog;
-using System.Runtime.CompilerServices;
 
 namespace InputDialogUsageSample;
 
@@ -183,16 +182,16 @@ public partial class Main : Form
     private void mnuIconSelector_Click(object sender, EventArgs e)
     {
         var sndr = sender as ToolStripMenuItem;
-        var selectedItem = sndr.Text;
         mnuIconSelectorError.Checked = false;
         mnuIconSelectorExclamation.Checked = false;
         mnuIconSelectorInformation.Checked = false;
         mnuIconSelectorNone.Checked = false;
-        mnuIconSelectorQuestion.Checked = false;    
+        mnuIconSelectorQuestion.Checked = false;
+        var selectedItem = sndr?.Text;
         switch (selectedItem)
         {
             case "Error":
-                selectedIcon = InputDialog.InputDialog.IDIcon.Error; 
+                selectedIcon = InputDialog.InputDialog.IDIcon.Error;
                 mnuIconSelectorError.Checked = true;
                 break;
             case "Exclamation":
