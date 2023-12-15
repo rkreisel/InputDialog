@@ -1,20 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Drawing;
-using System.Windows.Forms;
-
-
-namespace InputDialogTester;
+﻿namespace InputDialogTester;
 
 public static class Utilities
 {
 
-    public static Control FindControlAtPoint(Control container, Point pos)
+    public static Control? FindControlAtPoint(Control container, Point pos)
     {
-        Control child;
+        Control? child;
         foreach (Control c in container.Controls)
         {
             if (c.Visible && c.Bounds.Contains(pos))
@@ -27,7 +18,7 @@ public static class Utilities
         return null;
     }
 
-    public static Control FindControlAtCursor(Form form)
+    public static Control? FindControlAtCursor(Form form)
     {
         Point pos = Cursor.Position;
         if (form.Bounds.Contains(pos))

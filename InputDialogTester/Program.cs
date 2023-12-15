@@ -1,5 +1,3 @@
-using System.Threading;
-
 namespace InputDialogTester
 {
     internal static class Program

@@ -3,10 +3,6 @@
 //It has been modified significantly, converted to .net 6 and turned into a nuget package.
 
 using InputDialog.Utilities;
-using Microsoft.Win32;
-using System.Reflection.Metadata;
-using System.Security.Cryptography;
-using System.Windows.Forms;
 
 namespace InputDialog;
 
@@ -19,7 +15,7 @@ public static class InputDialog
     private static Size txtSize = new(230, 50);
     private static ToolTip? _tt = null;
     private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular);
-    private static Size _defaultSize = new Size(350, 170);
+    private static Size _defaultSize = new(350, 170);
 
     public enum IDIcon
     {
@@ -152,10 +148,10 @@ public static class InputDialog
                 ScrollBars = ScrollBars.Vertical,
                 Width = icon == IDIcon.Nothing
                 ? (int)(panel.Width * .93) //314
-                : (int)(panel.Width * .69) //224
+                : (int)(panel.Width * .69), //224
+                                            //Set label font
+                Font = formFont ?? _defaultFormFont
             };
-            //Set label font
-            text.Font = formFont ?? _defaultFormFont;
             text.Select(0, 0);
             panel.Controls.Add(text);
         }
@@ -171,10 +167,10 @@ public static class InputDialog
                 Size = boxsize,
                 Location = loc,
                 TextAlign = ContentAlignment.MiddleLeft,
-                BackColor = Color.Transparent
+                BackColor = Color.Transparent,
+                //Set label font
+                Font = formFont ?? _defaultFormFont
             };
-            //Set label font
-            label.Font = formFont ?? _defaultFormFont;
             panel.Controls.Add(label);
         }
 
@@ -255,9 +251,8 @@ public static class InputDialog
             }
             if (ctrl != null && ctrl.Length > 0)
             {
-                if (ctrl[0] is Button)
+                if (ctrl[0] is Button trgtBtn)
                 {
-                    var trgtBtn = (Button)ctrl[0];
                     trgtBtn.PerformClick();
                 }
             }
@@ -434,10 +429,7 @@ public static class InputDialog
 
     private static ToolTip GetTooTipControl()
     {
-        if (_tt == null)
-        {
-            _tt = new ToolTip();
-        }
+        _tt ??= new ToolTip();
         return _tt;
     }
 }
