@@ -31,6 +31,23 @@
             components = new System.ComponentModel.Container();
             sc = new SplitContainer();
             btnShowDialog = new Button();
+            groupBox3 = new GroupBox();
+            comboBox2 = new ComboBox();
+            comboBox1 = new ComboBox();
+            checkBox1 = new CheckBox();
+            numericUpDown2 = new NumericUpDown();
+            numericUpDown1 = new NumericUpDown();
+            nudIncrement = new NumericUpDown();
+            nudMaximum = new NumericUpDown();
+            nudMinimum = new NumericUpDown();
+            label24 = new Label();
+            label23 = new Label();
+            label22 = new Label();
+            label21 = new Label();
+            label20 = new Label();
+            label19 = new Label();
+            label18 = new Label();
+            label17 = new Label();
             txtForegroundColor = new TextBox();
             cmDialogInput = new ContextMenuStrip(components);
             cmDialogInputReset = new ToolStripMenuItem();
@@ -86,6 +103,12 @@
             sc.Panel1.SuspendLayout();
             sc.Panel2.SuspendLayout();
             sc.SuspendLayout();
+            groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudIncrement).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMaximum).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudMinimum).BeginInit();
             cmDialogInput.SuspendLayout();
             cmDropDowns.SuspendLayout();
             groupBox1.SuspendLayout();
@@ -104,6 +127,7 @@
             // sc.Panel1
             // 
             sc.Panel1.Controls.Add(btnShowDialog);
+            sc.Panel1.Controls.Add(groupBox3);
             sc.Panel1.Controls.Add(txtForegroundColor);
             sc.Panel1.Controls.Add(label16);
             sc.Panel1.Controls.Add(txtBackgroundColor);
@@ -135,19 +159,199 @@
             // sc.Panel2
             // 
             sc.Panel2.Controls.Add(txtResult);
-            sc.Size = new Size(731, 410);
-            sc.SplitterDistance = 296;
+            sc.Size = new Size(731, 624);
+            sc.SplitterDistance = 449;
             sc.TabIndex = 0;
             // 
             // btnShowDialog
             // 
-            btnShowDialog.Location = new Point(630, 265);
+            btnShowDialog.Location = new Point(12, 411);
             btnShowDialog.Name = "btnShowDialog";
             btnShowDialog.Size = new Size(75, 23);
             btnShowDialog.TabIndex = 0;
             btnShowDialog.Text = "Show Dialog";
             btnShowDialog.UseVisualStyleBackColor = true;
             btnShowDialog.Click += btnShowDialog_Click;
+            // 
+            // groupBox3
+            // 
+            groupBox3.Controls.Add(comboBox2);
+            groupBox3.Controls.Add(comboBox1);
+            groupBox3.Controls.Add(checkBox1);
+            groupBox3.Controls.Add(numericUpDown2);
+            groupBox3.Controls.Add(numericUpDown1);
+            groupBox3.Controls.Add(nudIncrement);
+            groupBox3.Controls.Add(nudMaximum);
+            groupBox3.Controls.Add(nudMinimum);
+            groupBox3.Controls.Add(label24);
+            groupBox3.Controls.Add(label23);
+            groupBox3.Controls.Add(label22);
+            groupBox3.Controls.Add(label21);
+            groupBox3.Controls.Add(label20);
+            groupBox3.Controls.Add(label19);
+            groupBox3.Controls.Add(label18);
+            groupBox3.Controls.Add(label17);
+            groupBox3.Location = new Point(12, 292);
+            groupBox3.Name = "groupBox3";
+            groupBox3.Size = new Size(693, 102);
+            groupBox3.TabIndex = 28;
+            groupBox3.TabStop = false;
+            groupBox3.Text = " Numeric Selector Parameters ";
+            groupBox3.Enter += groupBox3_Enter;
+            // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Items.AddRange(new object[] { "Left", "Right" });
+            comboBox2.Location = new Point(563, 46);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(121, 23);
+            comboBox2.TabIndex = 15;
+            comboBox2.Text = "Right";
+            // 
+            // comboBox1
+            // 
+            comboBox1.FormattingEnabled = true;
+            comboBox1.Items.AddRange(new object[] { "Left", "Right" });
+            comboBox1.Location = new Point(563, 21);
+            comboBox1.Name = "comboBox1";
+            comboBox1.Size = new Size(121, 23);
+            comboBox1.TabIndex = 14;
+            comboBox1.Text = "Right";
+            // 
+            // checkBox1
+            // 
+            checkBox1.AutoSize = true;
+            checkBox1.Location = new Point(389, 78);
+            checkBox1.Name = "checkBox1";
+            checkBox1.Size = new Size(15, 14);
+            checkBox1.TabIndex = 13;
+            checkBox1.UseVisualStyleBackColor = true;
+            // 
+            // numericUpDown2
+            // 
+            numericUpDown2.Location = new Point(327, 46);
+            numericUpDown2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numericUpDown2.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            numericUpDown2.Name = "numericUpDown2";
+            numericUpDown2.Size = new Size(77, 23);
+            numericUpDown2.TabIndex = 12;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(327, 19);
+            numericUpDown1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            numericUpDown1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(77, 23);
+            numericUpDown1.TabIndex = 11;
+            // 
+            // nudIncrement
+            // 
+            nudIncrement.Location = new Point(83, 73);
+            nudIncrement.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudIncrement.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            nudIncrement.Name = "nudIncrement";
+            nudIncrement.Size = new Size(77, 23);
+            nudIncrement.TabIndex = 10;
+            nudIncrement.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            // 
+            // nudMaximum
+            // 
+            nudMaximum.Location = new Point(83, 46);
+            nudMaximum.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudMaximum.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            nudMaximum.Name = "nudMaximum";
+            nudMaximum.Size = new Size(77, 23);
+            nudMaximum.TabIndex = 9;
+            nudMaximum.Value = new decimal(new int[] { 100, 0, 0, 0 });
+            // 
+            // nudMinimum
+            // 
+            nudMinimum.Location = new Point(83, 19);
+            nudMinimum.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
+            nudMinimum.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            nudMinimum.Name = "nudMinimum";
+            nudMinimum.Size = new Size(77, 23);
+            nudMinimum.TabIndex = 8;
+            // 
+            // label24
+            // 
+            label24.AutoSize = true;
+            label24.Location = new Point(439, 50);
+            label24.Name = "label24";
+            label24.Size = new Size(87, 15);
+            label24.TabIndex = 7;
+            label24.Text = "Text Alignment";
+            tt.SetToolTip(label24, "Must be <= Max and >= Min");
+            // 
+            // label23
+            // 
+            label23.AutoSize = true;
+            label23.Location = new Point(439, 23);
+            label23.Name = "label23";
+            label23.Size = new Size(111, 15);
+            label23.TabIndex = 6;
+            label23.Text = "Arrow Icon Position";
+            tt.SetToolTip(label23, "Must be <= Max and >= Min");
+            // 
+            // label22
+            // 
+            label22.AutoSize = true;
+            label22.Location = new Point(235, 77);
+            label22.Name = "label22";
+            label22.Size = new Size(139, 15);
+            label22.TabIndex = 5;
+            label22.Text = "Use Thousands Separator";
+            tt.SetToolTip(label22, "Must be <= Max and >= Min");
+            // 
+            // label21
+            // 
+            label21.AutoSize = true;
+            label21.Location = new Point(235, 50);
+            label21.Name = "label21";
+            label21.Size = new Size(86, 15);
+            label21.TabIndex = 4;
+            label21.Text = "Decimal Places";
+            tt.SetToolTip(label21, "Must be <= Max and >= Min");
+            // 
+            // label20
+            // 
+            label20.AutoSize = true;
+            label20.Location = new Point(13, 50);
+            label20.Name = "label20";
+            label20.Size = new Size(62, 15);
+            label20.TabIndex = 3;
+            label20.Text = "Maximum";
+            // 
+            // label19
+            // 
+            label19.AutoSize = true;
+            label19.Location = new Point(13, 77);
+            label19.Name = "label19";
+            label19.Size = new Size(61, 15);
+            label19.TabIndex = 2;
+            label19.Text = "Increment";
+            // 
+            // label18
+            // 
+            label18.AutoSize = true;
+            label18.Location = new Point(235, 23);
+            label18.Name = "label18";
+            label18.Size = new Size(79, 15);
+            label18.TabIndex = 1;
+            label18.Text = "Starting Value";
+            tt.SetToolTip(label18, "Must be <= Max and >= Min");
+            // 
+            // label17
+            // 
+            label17.AutoSize = true;
+            label17.Location = new Point(13, 23);
+            label17.Name = "label17";
+            label17.Size = new Size(60, 15);
+            label17.TabIndex = 0;
+            label17.Text = "Minimum";
+            tt.SetToolTip(label17, "Must be <= Max and >= Min");
             // 
             // txtForegroundColor
             // 
@@ -546,7 +750,7 @@
             txtResult.Multiline = true;
             txtResult.Name = "txtResult";
             txtResult.ScrollBars = ScrollBars.Both;
-            txtResult.Size = new Size(731, 110);
+            txtResult.Size = new Size(731, 171);
             txtResult.TabIndex = 0;
             // 
             // ofd
@@ -592,7 +796,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(731, 434);
+            ClientSize = new Size(731, 648);
             Controls.Add(sc);
             Controls.Add(mnuMain);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -607,6 +811,13 @@
             sc.Panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)sc).EndInit();
             sc.ResumeLayout(false);
+            groupBox3.ResumeLayout(false);
+            groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudIncrement).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMaximum).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudMinimum).EndInit();
             cmDialogInput.ResumeLayout(false);
             cmDropDowns.ResumeLayout(false);
             groupBox1.ResumeLayout(false);
@@ -673,5 +884,22 @@
         private ContextMenuStrip cmMessage;
         private ToolStripMenuItem cmMessageTwoLineTestText;
         private ToolStripMenuItem longTestTextToolStripMenuItem;
+        private GroupBox groupBox3;
+        private Label label20;
+        private Label label19;
+        private Label label18;
+        private Label label17;
+        private Label label24;
+        private Label label23;
+        private Label label22;
+        private Label label21;
+        private NumericUpDown nudIncrement;
+        private NumericUpDown nudMaximum;
+        private NumericUpDown nudMinimum;
+        private NumericUpDown numericUpDown1;
+        private ComboBox comboBox2;
+        private ComboBox comboBox1;
+        private CheckBox checkBox1;
+        private NumericUpDown numericUpDown2;
     }
 }

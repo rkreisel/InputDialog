@@ -16,6 +16,7 @@ public static class InputDialog
     private static ToolTip? _tt = null;
     private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular);
     private static Size _defaultSize = new(350, 170);
+    private static NumericProperties _numericProperties;
 
     public enum IDIcon
     {
@@ -29,7 +30,8 @@ public static class InputDialog
     {
         ComboBox,
         TextBox,
-        MsgBox
+        MsgBox,
+        Numeric
     }
     public enum IDButton
     {
@@ -59,6 +61,7 @@ public static class InputDialog
     /// <param name="foregroundColor">A for the text. (As System,Color) [null defauilts to Black]</param>
     /// <param name="backgroundColor">A color for the background. (As System,Color) [null defaults to White]</param>
     /// <param name="acceptsUserInput">Applies ONLY to ComboBox control. If False, the user can only select from predefined values in listItems</param>
+    /// <param name="numericProperties">Applies ONLY to Numberic Up Down control. Specify and/or override the initial values of the NumericUpDown control</param>
     /// <returns>IDResult containing the DialogResult and the input/selected text</returns>
     public static IDResult ShowDialog(
         string message,
@@ -75,10 +78,11 @@ public static class InputDialog
         ImageLayout? backgroundImageLayout = null,
         Color? foregroundColor = null,
         Color? backgroundColor = null,
-        bool acceptsUserInput = true)
+        bool acceptsUserInput = true,
+        NumericProperties? numericProperties = null)
     {
         //setup
-
+        _numericProperties = numericProperties ?? new NumericProperties();
 
         //set the default Font for everything
         var fixedFormFontSize = frm.Font.Size;
@@ -401,6 +405,25 @@ public static class InputDialog
                 }
                 comboBox.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
                 returnControl = comboBox;
+                break;
+            case IDType.Numeric:                
+                NumericUpDown numericUpDown  = new()
+                {
+                    Size = new Size(sizeWidth, 22),
+                    Location = loc,
+                    //DropDownStyle = acceptsUserInput ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList,
+                    Name = "numericUpDown"
+                };
+                numericUpDown.Minimum = _numericProperties.Minimum;
+                numericUpDown.Maximum = _numericProperties.Maximum;
+                numericUpDown.Increment = _numericProperties.Increment;
+                numericUpDown.ThousandsSeparator = _numericProperties.ThousandsSeparator;
+                numericUpDown.DecimalPlaces = _numericProperties.DecimalPlaces;
+                numericUpDown.Value = _numericProperties.Value;
+                numericUpDown.TextAlign = _numericProperties.HorizontalAlignment;
+                numericUpDown.UpDownAlign = _numericProperties.UpDownAlign;
+                numericUpDown.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
+                returnControl = numericUpDown;
                 break;
             case IDType.TextBox:
                 TextBox textBox = new()

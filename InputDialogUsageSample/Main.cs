@@ -212,4 +212,28 @@ public partial class Main : Form
                 break;
         }
     }
+
+    private void btnNumericUpDown_Click(object sender, EventArgs e)
+    {
+        var rslt = InputDialog.InputDialog.ShowDialog(
+            "Use the arrows to select a value.",
+            "Title",
+            selectedIcon,
+            InputDialog.InputDialog.IDButton.OkCancel,
+            type: InputDialog.InputDialog.IDType.Numeric,
+            numericProperties: new NumericProperties 
+            {
+                //Try out these options that change the display
+                //Increment = 1,
+                //Maximum = 100,
+                //Minimum = 1,
+                //Value = 9999,
+                //DecimalPlaces = 2, ThousandsSeparator = true,
+                //UpDownAlign = LeftRightAlignment.Left,
+                //HorizontalAlignment = HorizontalAlignment.Center
+            },
+            acceptsUserInput: true);;
+        if (rslt.DialogResult == DialogResult.OK)
+            ShowResult(rslt.ResultText);
+    }
 }
