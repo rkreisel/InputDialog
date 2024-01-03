@@ -18,29 +18,6 @@ public static class InputDialog
     private static Size _defaultSize = new(350, 170);
     private static NumericProperties _numericProperties;
 
-    public enum IDIcon
-    {
-        Error,
-        Exclamation,
-        Information,
-        Question,
-        Nothing
-    }
-    public enum IDType
-    {
-        ComboBox,
-        TextBox,
-        MsgBox,
-        Numeric
-    }
-    public enum IDButton
-    {
-        Ok,
-        OkCancel,
-        YesNo,
-        YesNoCancel
-    }
-
     /// <summary>
     /// This form functions like a MessageBox, with the added feature of accepting input via a textbox or combobox.
     /// This form returns a IDResult containing the DialogResult and the input/selected text.

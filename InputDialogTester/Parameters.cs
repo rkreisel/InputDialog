@@ -1,5 +1,4 @@
 using InputDialog;
-using static InputDialog.InputDialog;
 
 namespace InputDialogTester
 {
