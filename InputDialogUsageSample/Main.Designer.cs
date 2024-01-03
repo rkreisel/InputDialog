@@ -52,6 +52,7 @@
             mnuIconSelectorInformation = new ToolStripMenuItem();
             mnuIconSelectorQuestion = new ToolStripMenuItem();
             mnuIconSelectorNone = new ToolStripMenuItem();
+            btnNumericUpDown = new Button();
             cm.SuspendLayout();
             mnuMain.SuspendLayout();
             SuspendLayout();
@@ -213,7 +214,7 @@
             // 
             mnuIconSelectorError.CheckOnClick = true;
             mnuIconSelectorError.Name = "mnuIconSelectorError";
-            mnuIconSelectorError.Size = new Size(180, 22);
+            mnuIconSelectorError.Size = new Size(139, 22);
             mnuIconSelectorError.Text = "Error";
             mnuIconSelectorError.Click += mnuIconSelector_Click;
             // 
@@ -221,7 +222,7 @@
             // 
             mnuIconSelectorExclamation.CheckOnClick = true;
             mnuIconSelectorExclamation.Name = "mnuIconSelectorExclamation";
-            mnuIconSelectorExclamation.Size = new Size(180, 22);
+            mnuIconSelectorExclamation.Size = new Size(139, 22);
             mnuIconSelectorExclamation.Text = "Exclamation";
             mnuIconSelectorExclamation.Click += mnuIconSelector_Click;
             // 
@@ -229,7 +230,7 @@
             // 
             mnuIconSelectorInformation.CheckOnClick = true;
             mnuIconSelectorInformation.Name = "mnuIconSelectorInformation";
-            mnuIconSelectorInformation.Size = new Size(180, 22);
+            mnuIconSelectorInformation.Size = new Size(139, 22);
             mnuIconSelectorInformation.Text = "Information";
             mnuIconSelectorInformation.Click += mnuIconSelector_Click;
             // 
@@ -237,7 +238,7 @@
             // 
             mnuIconSelectorQuestion.CheckOnClick = true;
             mnuIconSelectorQuestion.Name = "mnuIconSelectorQuestion";
-            mnuIconSelectorQuestion.Size = new Size(180, 22);
+            mnuIconSelectorQuestion.Size = new Size(139, 22);
             mnuIconSelectorQuestion.Text = "Question";
             mnuIconSelectorQuestion.Click += mnuIconSelector_Click;
             // 
@@ -245,15 +246,26 @@
             // 
             mnuIconSelectorNone.CheckOnClick = true;
             mnuIconSelectorNone.Name = "mnuIconSelectorNone";
-            mnuIconSelectorNone.Size = new Size(180, 22);
+            mnuIconSelectorNone.Size = new Size(139, 22);
             mnuIconSelectorNone.Text = "None";
             mnuIconSelectorNone.Click += mnuIconSelector_Click;
+            // 
+            // btnNumericUpDown
+            // 
+            btnNumericUpDown.Location = new Point(3, 350);
+            btnNumericUpDown.Name = "btnNumericUpDown";
+            btnNumericUpDown.Size = new Size(143, 23);
+            btnNumericUpDown.TabIndex = 13;
+            btnNumericUpDown.Text = "Numeric Up Down";
+            btnNumericUpDown.UseVisualStyleBackColor = true;
+            btnNumericUpDown.Click += btnNumericUpDown_Click;
             // 
             // Main
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(149, 347);
+            ClientSize = new Size(149, 383);
+            Controls.Add(btnNumericUpDown);
             Controls.Add(mnuMain);
             Controls.Add(btnEditableComboBox);
             Controls.Add(btnBackgroundImage);
@@ -302,5 +314,6 @@
         private ToolStripMenuItem mnuIconSelectorInformation;
         private ToolStripMenuItem mnuIconSelectorQuestion;
         private ToolStripMenuItem mnuIconSelectorNone;
+        private Button btnNumericUpDown;
     }
 }

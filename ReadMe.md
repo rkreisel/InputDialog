@@ -23,7 +23,7 @@ namespace InputDialogUsageSample;
 
 public partial class Main : Form
 {
-    InputDialog.InputDialog.IDIcon selectedIcon = InputDialog.InputDialog.IDIcon.Question;
+    InputDialog.IDIcon selectedIcon = InputDialog.IDIcon.Question;
 
     public Main()
     {
@@ -40,8 +40,8 @@ public partial class Main : Form
             txt,
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox);
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
     }
@@ -52,8 +52,8 @@ public partial class Main : Form
             "Enter text",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox,
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox,
             defaultText: "Default Text");
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
@@ -65,8 +65,8 @@ public partial class Main : Form
             "Enter text",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox,
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox,
             buttonTexts: new ButtonTexts { OKText = "Do It long button text here" });
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
@@ -78,7 +78,7 @@ public partial class Main : Form
             "This is the message.",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel);
+            InputDialog.IDButton.OkCancel);
     }
 
     private void btnComboBoxWithError_Click(object sender, EventArgs e)
@@ -87,8 +87,8 @@ public partial class Main : Form
             "This is the message.",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            type: InputDialog.InputDialog.IDType.ComboBox);
+            InputDialog.IDButton.OkCancel,
+            type: InputDialog.IDType.ComboBox);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
     }
@@ -101,8 +101,8 @@ public partial class Main : Form
                 "Enter text",
                 "Title",
                 selectedIcon,
-                InputDialog.InputDialog.IDButton.OkCancel,
-                InputDialog.InputDialog.IDType.TextBox,
+                InputDialog.IDButton.OkCancel,
+                InputDialog.IDType.TextBox,
                 formFont: new Font(fd.Font.FontFamily, fd.Font.Size, fd.Font.Style));
             if (rslt.DialogResult == DialogResult.OK)
                 ShowResult(rslt.ResultText);
@@ -115,8 +115,8 @@ public partial class Main : Form
             "Enter Text",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox,
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox,
             backgroundColor: Color.AliceBlue);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
@@ -128,8 +128,8 @@ public partial class Main : Form
             "Enter Text",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox,
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox,
             foregroundColor: Color.Red);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
@@ -141,8 +141,8 @@ public partial class Main : Form
             "Enter Text",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox,
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox,
             foregroundColor: Color.White,
             backgroundColor: Color.DarkBlue);
         if (rslt.DialogResult == DialogResult.OK)
@@ -155,8 +155,8 @@ public partial class Main : Form
             "Enter Text",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            InputDialog.InputDialog.IDType.TextBox,
+            InputDialog.IDButton.OkCancel,
+            InputDialog.IDType.TextBox,
             foregroundColor: Color.White,
             formFont: new Font("Arial", 28, FontStyle.Bold),
             backgroundImage: Image.FromFile(@"Images\Picture.jpg"),
@@ -176,8 +176,8 @@ public partial class Main : Form
            "This is the message.",
            "Title",
            selectedIcon,
-           InputDialog.InputDialog.IDButton.OkCancel,
-           type: InputDialog.InputDialog.IDType.ComboBox,
+           InputDialog.IDButton.OkCancel,
+           type: InputDialog.IDType.ComboBox,
            listItems: new List<string> { "Item 1", "Item2", "Item 3" },
            acceptsUserInput: true);
         if (rslt.DialogResult == DialogResult.OK)
@@ -190,8 +190,8 @@ public partial class Main : Form
             "This is the message.",
             "Title",
             selectedIcon,
-            InputDialog.InputDialog.IDButton.OkCancel,
-            type: InputDialog.InputDialog.IDType.ComboBox,
+            InputDialog.IDButton.OkCancel,
+            type: InputDialog.IDType.ComboBox,
             listItems: new List<string> { "Item 1", "Item2", "Item 3" },
             acceptsUserInput: false);
         if (rslt.DialogResult == DialogResult.OK)
@@ -210,28 +210,53 @@ public partial class Main : Form
         switch (selectedItem)
         {
             case "Error":
-                selectedIcon = InputDialog.InputDialog.IDIcon.Error;
+                selectedIcon = IDIcon.Error;
                 mnuIconSelectorError.Checked = true;
                 break;
             case "Exclamation":
-                selectedIcon = InputDialog.InputDialog.IDIcon.Exclamation;
+                selectedIcon = IDIcon.Exclamation;
                 mnuIconSelectorExclamation.Checked = true;
                 break;
             case "Information":
-                selectedIcon = InputDialog.InputDialog.IDIcon.Information;
+                selectedIcon = IDIcon.Information;
                 mnuIconSelectorInformation.Checked = true;
                 break;
             case "Question":
-                selectedIcon = InputDialog.InputDialog.IDIcon.Question;
+                selectedIcon = IDIcon.Question;
                 mnuIconSelectorQuestion.Checked = true;
                 break;
             default:
-                selectedIcon = InputDialog.InputDialog.IDIcon.Nothing;
+                selectedIcon = IDIcon.Nothing;
                 mnuIconSelectorNone.Checked = true;
                 break;
         }
     }
+
+    private void btnNumericUpDown_Click(object sender, EventArgs e)
+    {
+        var rslt = InputDialog.InputDialog.ShowDialog(
+            "Use the arrows to select a value.",
+            "Title",
+            selectedIcon,
+            InputDialog.IDButton.OkCancel,
+            type: InputDialog.IDType.Numeric,
+            numericProperties: new NumericProperties 
+            {
+                //Try out these options that change the display
+                //Increment = 1,
+                //Maximum = 100,
+                //Minimum = 1,
+                //Value = 9999,
+                //DecimalPlaces = 2, ThousandsSeparator = true,
+                //UpDownAlign = LeftRightAlignment.Left,
+                //HorizontalAlignment = HorizontalAlignment.Center
+            },
+            acceptsUserInput: true);;
+        if (rslt.DialogResult == DialogResult.OK)
+            ShowResult(rslt.ResultText);
+    }
 }
+
 
 ```
 

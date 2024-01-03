@@ -16,28 +16,7 @@ public static class InputDialog
     private static ToolTip? _tt = null;
     private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular);
     private static Size _defaultSize = new(350, 170);
-
-    public enum IDIcon
-    {
-        Error,
-        Exclamation,
-        Information,
-        Question,
-        Nothing
-    }
-    public enum IDType
-    {
-        ComboBox,
-        TextBox,
-        MsgBox
-    }
-    public enum IDButton
-    {
-        Ok,
-        OkCancel,
-        YesNo,
-        YesNoCancel
-    }
+    private static NumericProperties _numericProperties;
 
     /// <summary>
     /// This form functions like a MessageBox, with the added feature of accepting input via a textbox or combobox.
@@ -59,6 +38,7 @@ public static class InputDialog
     /// <param name="foregroundColor">A for the text. (As System,Color) [null defauilts to Black]</param>
     /// <param name="backgroundColor">A color for the background. (As System,Color) [null defaults to White]</param>
     /// <param name="acceptsUserInput">Applies ONLY to ComboBox control. If False, the user can only select from predefined values in listItems</param>
+    /// <param name="numericProperties">Applies ONLY to Numberic Up Down control. Specify and/or override the initial values of the NumericUpDown control</param>
     /// <returns>IDResult containing the DialogResult and the input/selected text</returns>
     public static IDResult ShowDialog(
         string message,
@@ -75,10 +55,11 @@ public static class InputDialog
         ImageLayout? backgroundImageLayout = null,
         Color? foregroundColor = null,
         Color? backgroundColor = null,
-        bool acceptsUserInput = true)
+        bool acceptsUserInput = true,
+        NumericProperties? numericProperties = null)
     {
         //setup
-
+        _numericProperties = numericProperties ?? new NumericProperties();
 
         //set the default Font for everything
         var fixedFormFontSize = frm.Font.Size;
@@ -401,6 +382,24 @@ public static class InputDialog
                 }
                 comboBox.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
                 returnControl = comboBox;
+                break;
+            case IDType.Numeric:
+                NumericUpDown numericUpDown = new()
+                {
+                    Size = new Size(sizeWidth, 22),
+                    Location = loc,
+                    Name = "numericUpDown",
+                    Minimum = _numericProperties.Minimum,
+                    Maximum = _numericProperties.Maximum,
+                    Increment = _numericProperties.Increment,
+                    ThousandsSeparator = _numericProperties.ThousandsSeparator,
+                    DecimalPlaces = _numericProperties.DecimalPlaces,
+                    Value = _numericProperties.Value,
+                    TextAlign = _numericProperties.HorizontalAlignment,
+                    UpDownAlign = _numericProperties.UpDownAlign
+                };
+                numericUpDown.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
+                returnControl = numericUpDown;
                 break;
             case IDType.TextBox:
                 TextBox textBox = new()

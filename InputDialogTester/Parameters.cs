@@ -1,5 +1,4 @@
 using InputDialog;
-using static InputDialog.InputDialog;
 
 namespace InputDialogTester
 {
@@ -16,6 +15,7 @@ namespace InputDialogTester
         private IDType chosenType;
         private ImageLayout? chosenImageLayout;
         private bool acceptsUserInput = false;
+        private readonly NumericProperties numericProperties = new();
 
         public Parameters()
         {
@@ -40,6 +40,7 @@ namespace InputDialogTester
             SetDefaultShowInTaskbar();
             SetDefaultTitle();
             SetDefaultImageLayout();
+            SetNumericProperties();
         }
 
         public void SetDefaultMessage() =>
@@ -107,6 +108,18 @@ namespace InputDialogTester
         public void SetDefaultImageLayout() =>
             cbImageLayout.SelectedItem = null;
 
+        public void SetNumericProperties()
+        {
+
+            nudDecimalPlaces.Value = numericProperties.DecimalPlaces;
+            txtIncrement.Text = numericProperties.Increment.ToString();
+            nudMaximum.Value = numericProperties.Maximum;
+            nudStartValue.Value = numericProperties.Value;
+            nudMinimum.Value = numericProperties.Minimum;
+            chkThousandsSeparator.Checked = numericProperties.ThousandsSeparator;
+            cbArrowPosition.Text = numericProperties.UpDownAlign.ToString();
+            cbAlignment.Text = numericProperties.HorizontalAlignment.ToString();
+        }
         #endregion
 
         #region Screen Control
@@ -221,6 +234,20 @@ namespace InputDialogTester
 
         private void btnShowDialog_Click(object sender, EventArgs e)
         {
+            if (chosenType == IDType.Numeric)
+            {
+                if (!ValidateNumericProperties())
+                    return;
+                numericProperties.Value = nudStartValue.Value;
+                numericProperties.ThousandsSeparator = chkThousandsSeparator.Checked;
+                numericProperties.Maximum = nudMaximum.Value;
+                numericProperties.Minimum = nudMinimum.Value;
+                numericProperties.Increment = decimal.Parse(txtIncrement.Text);
+                numericProperties.HorizontalAlignment = (HorizontalAlignment)Enum.Parse(typeof(HorizontalAlignment), cbAlignment.Text);
+                numericProperties.UpDownAlign = (LeftRightAlignment)Enum.Parse(typeof(LeftRightAlignment), cbArrowPosition.Text);
+                numericProperties.DecimalPlaces = (int)nudDecimalPlaces.Value;
+            }
+
             ButtonTexts btnTxts = new()
             {
                 CancelText = txtCancelButton.Text,
@@ -247,7 +274,8 @@ namespace InputDialogTester
                 backgroundImageLayout: chosenImageLayout,
                 foregroundColor: chosenForegroundColor,
                 backgroundColor: chosenBackgroundColor,
-                acceptsUserInput: acceptsUserInput);
+                acceptsUserInput: acceptsUserInput,
+                numericProperties: numericProperties);
             if (rslt.DialogResult == DialogResult.OK)
                 txtResult.Text = rslt.ResultText;
         }
@@ -270,7 +298,27 @@ namespace InputDialogTester
                 case "Message Box":
                     chosenType = IDType.MsgBox;
                     break;
+                case "Numeric Selector":
+                    chosenType = IDType.Numeric;
+                    break;
             }
+        }
+
+        private bool ValidateNumericProperties()
+        {
+            var errors = new List<string>();
+            if (nudMaximum.Value <= nudMinimum.Value)
+                errors.Add("Maximum must the greater than the Minimum.");
+            if (nudMinimum.Value >= nudMaximum.Value)
+                errors.Add("Minimum must the less than the Maximum.");
+            if (nudStartValue.Value > nudMaximum.Value || nudStartValue.Value < nudMinimum.Value)
+                errors.Add("Start value must be between the Minimum and Maximum");
+            if (errors.Any())
+            {
+                MessageBox.Show(string.Join($"{Environment.NewLine}", errors));
+                return false;
+            }
+            return true;
         }
 
         private void cbImageLayout_SelectedValueChanged(object sender, EventArgs e)
@@ -313,6 +361,18 @@ namespace InputDialogTester
                 3 => IDIcon.Question,
                 _ => IDIcon.Nothing
             };
+        }
+
+        private void txtIncrement_TextChanged(object sender, EventArgs e)
+        {
+            if (!decimal.TryParse(txtIncrement.Text, out decimal increment))
+            {
+                MessageBox.Show("Please enter a numeric value.");
+            }
+            else
+            {
+                numericProperties.Increment = increment;
+            }
         }
     }
 }
