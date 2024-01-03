@@ -32,12 +32,12 @@
             sc = new SplitContainer();
             btnShowDialog = new Button();
             groupBox3 = new GroupBox();
-            comboBox2 = new ComboBox();
-            comboBox1 = new ComboBox();
-            checkBox1 = new CheckBox();
-            numericUpDown2 = new NumericUpDown();
-            numericUpDown1 = new NumericUpDown();
-            nudIncrement = new NumericUpDown();
+            txtIncrement = new TextBox();
+            cbAlignment = new ComboBox();
+            cbArrowPosition = new ComboBox();
+            chkThousandsSeparator = new CheckBox();
+            nudDecimalPlaces = new NumericUpDown();
+            nudStartValue = new NumericUpDown();
             nudMaximum = new NumericUpDown();
             nudMinimum = new NumericUpDown();
             label24 = new Label();
@@ -104,9 +104,8 @@
             sc.Panel2.SuspendLayout();
             sc.SuspendLayout();
             groupBox3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)nudIncrement).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudDecimalPlaces).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)nudStartValue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMaximum).BeginInit();
             ((System.ComponentModel.ISupportInitialize)nudMinimum).BeginInit();
             cmDialogInput.SuspendLayout();
@@ -159,13 +158,13 @@
             // sc.Panel2
             // 
             sc.Panel2.Controls.Add(txtResult);
-            sc.Size = new Size(731, 624);
-            sc.SplitterDistance = 449;
+            sc.Size = new Size(731, 599);
+            sc.SplitterDistance = 430;
             sc.TabIndex = 0;
             // 
             // btnShowDialog
             // 
-            btnShowDialog.Location = new Point(12, 411);
+            btnShowDialog.Location = new Point(10, 400);
             btnShowDialog.Name = "btnShowDialog";
             btnShowDialog.Size = new Size(75, 23);
             btnShowDialog.TabIndex = 0;
@@ -175,12 +174,12 @@
             // 
             // groupBox3
             // 
-            groupBox3.Controls.Add(comboBox2);
-            groupBox3.Controls.Add(comboBox1);
-            groupBox3.Controls.Add(checkBox1);
-            groupBox3.Controls.Add(numericUpDown2);
-            groupBox3.Controls.Add(numericUpDown1);
-            groupBox3.Controls.Add(nudIncrement);
+            groupBox3.Controls.Add(txtIncrement);
+            groupBox3.Controls.Add(cbAlignment);
+            groupBox3.Controls.Add(cbArrowPosition);
+            groupBox3.Controls.Add(chkThousandsSeparator);
+            groupBox3.Controls.Add(nudDecimalPlaces);
+            groupBox3.Controls.Add(nudStartValue);
             groupBox3.Controls.Add(nudMaximum);
             groupBox3.Controls.Add(nudMinimum);
             groupBox3.Controls.Add(label24);
@@ -197,70 +196,67 @@
             groupBox3.TabIndex = 28;
             groupBox3.TabStop = false;
             groupBox3.Text = " Numeric Selector Parameters ";
-            groupBox3.Enter += groupBox3_Enter;
             // 
-            // comboBox2
+            // txtIncrement
             // 
-            comboBox2.FormattingEnabled = true;
-            comboBox2.Items.AddRange(new object[] { "Left", "Right" });
-            comboBox2.Location = new Point(563, 46);
-            comboBox2.Name = "comboBox2";
-            comboBox2.Size = new Size(121, 23);
-            comboBox2.TabIndex = 15;
-            comboBox2.Text = "Right";
+            txtIncrement.Location = new Point(83, 73);
+            txtIncrement.Name = "txtIncrement";
+            txtIncrement.Size = new Size(77, 23);
+            txtIncrement.TabIndex = 16;
+            txtIncrement.Text = "1";
+            txtIncrement.TextChanged += txtIncrement_TextChanged;
             // 
-            // comboBox1
+            // cbAlignment
             // 
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Items.AddRange(new object[] { "Left", "Right" });
-            comboBox1.Location = new Point(563, 21);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(121, 23);
-            comboBox1.TabIndex = 14;
-            comboBox1.Text = "Right";
+            cbAlignment.FormattingEnabled = true;
+            cbAlignment.Items.AddRange(new object[] { "Left", "Right", "Center" });
+            cbAlignment.Location = new Point(563, 46);
+            cbAlignment.Name = "cbAlignment";
+            cbAlignment.Size = new Size(121, 23);
+            cbAlignment.TabIndex = 15;
+            cbAlignment.Text = "Right";
             // 
-            // checkBox1
+            // cbArrowPosition
             // 
-            checkBox1.AutoSize = true;
-            checkBox1.Location = new Point(389, 78);
-            checkBox1.Name = "checkBox1";
-            checkBox1.Size = new Size(15, 14);
-            checkBox1.TabIndex = 13;
-            checkBox1.UseVisualStyleBackColor = true;
+            cbArrowPosition.FormattingEnabled = true;
+            cbArrowPosition.Items.AddRange(new object[] { "Left", "Right" });
+            cbArrowPosition.Location = new Point(563, 21);
+            cbArrowPosition.Name = "cbArrowPosition";
+            cbArrowPosition.Size = new Size(121, 23);
+            cbArrowPosition.TabIndex = 14;
+            cbArrowPosition.Text = "Right";
             // 
-            // numericUpDown2
+            // chkThousandsSeparator
             // 
-            numericUpDown2.Location = new Point(327, 46);
-            numericUpDown2.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            numericUpDown2.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
-            numericUpDown2.Name = "numericUpDown2";
-            numericUpDown2.Size = new Size(77, 23);
-            numericUpDown2.TabIndex = 12;
+            chkThousandsSeparator.AutoSize = true;
+            chkThousandsSeparator.Location = new Point(389, 78);
+            chkThousandsSeparator.Name = "chkThousandsSeparator";
+            chkThousandsSeparator.Size = new Size(15, 14);
+            chkThousandsSeparator.TabIndex = 13;
+            chkThousandsSeparator.UseVisualStyleBackColor = true;
             // 
-            // numericUpDown1
+            // nudDecimalPlaces
             // 
-            numericUpDown1.Location = new Point(327, 19);
-            numericUpDown1.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            numericUpDown1.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
-            numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(77, 23);
-            numericUpDown1.TabIndex = 11;
+            nudDecimalPlaces.Location = new Point(327, 46);
+            nudDecimalPlaces.Maximum = new decimal(new int[] { 10, 0, 0, 0 });
+            nudDecimalPlaces.Name = "nudDecimalPlaces";
+            nudDecimalPlaces.Size = new Size(77, 23);
+            nudDecimalPlaces.TabIndex = 12;
             // 
-            // nudIncrement
+            // nudStartValue
             // 
-            nudIncrement.Location = new Point(83, 73);
-            nudIncrement.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            nudIncrement.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
-            nudIncrement.Name = "nudIncrement";
-            nudIncrement.Size = new Size(77, 23);
-            nudIncrement.TabIndex = 10;
-            nudIncrement.Value = new decimal(new int[] { 1, 0, 0, 0 });
+            nudStartValue.Location = new Point(327, 19);
+            nudStartValue.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            nudStartValue.Minimum = new decimal(new int[] { 1000000, 0, 0, int.MinValue });
+            nudStartValue.Name = "nudStartValue";
+            nudStartValue.Size = new Size(77, 23);
+            nudStartValue.TabIndex = 11;
             // 
             // nudMaximum
             // 
             nudMaximum.Location = new Point(83, 46);
-            nudMaximum.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            nudMaximum.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            nudMaximum.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            nudMaximum.Minimum = new decimal(new int[] { 1000000, 0, 0, int.MinValue });
             nudMaximum.Name = "nudMaximum";
             nudMaximum.Size = new Size(77, 23);
             nudMaximum.TabIndex = 9;
@@ -269,8 +265,8 @@
             // nudMinimum
             // 
             nudMinimum.Location = new Point(83, 19);
-            nudMinimum.Maximum = new decimal(new int[] { 1000, 0, 0, 0 });
-            nudMinimum.Minimum = new decimal(new int[] { 1000, 0, 0, int.MinValue });
+            nudMinimum.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            nudMinimum.Minimum = new decimal(new int[] { 1000000, 0, 0, int.MinValue });
             nudMinimum.Name = "nudMinimum";
             nudMinimum.Size = new Size(77, 23);
             nudMinimum.TabIndex = 8;
@@ -621,7 +617,7 @@
             cbPrompt.ContextMenuStrip = cmDropDowns;
             cbPrompt.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPrompt.FormattingEnabled = true;
-            cbPrompt.Items.AddRange(new object[] { "Locked Combo Box", "Editable Combo Box", "Text Box", "Message Box" });
+            cbPrompt.Items.AddRange(new object[] { "Locked Combo Box", "Editable Combo Box", "Text Box", "Message Box", "Numeric Selector" });
             cbPrompt.Location = new Point(125, 165);
             cbPrompt.Name = "cbPrompt";
             cbPrompt.Size = new Size(223, 23);
@@ -750,7 +746,7 @@
             txtResult.Multiline = true;
             txtResult.Name = "txtResult";
             txtResult.ScrollBars = ScrollBars.Both;
-            txtResult.Size = new Size(731, 171);
+            txtResult.Size = new Size(731, 165);
             txtResult.TabIndex = 0;
             // 
             // ofd
@@ -796,7 +792,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(731, 648);
+            ClientSize = new Size(731, 623);
             Controls.Add(sc);
             Controls.Add(mnuMain);
             FormBorderStyle = FormBorderStyle.FixedDialog;
@@ -813,9 +809,8 @@
             sc.ResumeLayout(false);
             groupBox3.ResumeLayout(false);
             groupBox3.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown2).EndInit();
-            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
-            ((System.ComponentModel.ISupportInitialize)nudIncrement).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudDecimalPlaces).EndInit();
+            ((System.ComponentModel.ISupportInitialize)nudStartValue).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMaximum).EndInit();
             ((System.ComponentModel.ISupportInitialize)nudMinimum).EndInit();
             cmDialogInput.ResumeLayout(false);
@@ -893,13 +888,13 @@
         private Label label23;
         private Label label22;
         private Label label21;
-        private NumericUpDown nudIncrement;
         private NumericUpDown nudMaximum;
         private NumericUpDown nudMinimum;
-        private NumericUpDown numericUpDown1;
-        private ComboBox comboBox2;
-        private ComboBox comboBox1;
-        private CheckBox checkBox1;
-        private NumericUpDown numericUpDown2;
+        private NumericUpDown nudStartValue;
+        private ComboBox cbAlignment;
+        private ComboBox cbArrowPosition;
+        private CheckBox chkThousandsSeparator;
+        private NumericUpDown nudDecimalPlaces;
+        private TextBox txtIncrement;
     }
 }

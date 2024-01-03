@@ -14,7 +14,8 @@ Also functions a a standard MessageBox.
 20220213 - Updated XML comments
 20220308 - Enable no icon and adjusted sizes of other elements accordingly
 20231214 - Fixed combobox Enter key = click Ok button (if exists)
-20231215 - Code Cleanup only (no true updates)</Description>
+20231215 - Code Cleanup only (no true updates)
+20240103 - Added numeric selector</Description>
 		<Copyright>House on the Rock Software</Copyright>
 		<PackageProjectUrl>https://github.com/rkreisel/InputDialog</PackageProjectUrl>
 		<PackageReadmeFile>ReadMe.md</PackageReadmeFile>

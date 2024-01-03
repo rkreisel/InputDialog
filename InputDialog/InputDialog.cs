@@ -406,22 +406,21 @@ public static class InputDialog
                 comboBox.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
                 returnControl = comboBox;
                 break;
-            case IDType.Numeric:                
-                NumericUpDown numericUpDown  = new()
+            case IDType.Numeric:
+                NumericUpDown numericUpDown = new()
                 {
                     Size = new Size(sizeWidth, 22),
                     Location = loc,
-                    //DropDownStyle = acceptsUserInput ? ComboBoxStyle.DropDown : ComboBoxStyle.DropDownList,
-                    Name = "numericUpDown"
+                    Name = "numericUpDown",
+                    Minimum = _numericProperties.Minimum,
+                    Maximum = _numericProperties.Maximum,
+                    Increment = _numericProperties.Increment,
+                    ThousandsSeparator = _numericProperties.ThousandsSeparator,
+                    DecimalPlaces = _numericProperties.DecimalPlaces,
+                    Value = _numericProperties.Value,
+                    TextAlign = _numericProperties.HorizontalAlignment,
+                    UpDownAlign = _numericProperties.UpDownAlign
                 };
-                numericUpDown.Minimum = _numericProperties.Minimum;
-                numericUpDown.Maximum = _numericProperties.Maximum;
-                numericUpDown.Increment = _numericProperties.Increment;
-                numericUpDown.ThousandsSeparator = _numericProperties.ThousandsSeparator;
-                numericUpDown.DecimalPlaces = _numericProperties.DecimalPlaces;
-                numericUpDown.Value = _numericProperties.Value;
-                numericUpDown.TextAlign = _numericProperties.HorizontalAlignment;
-                numericUpDown.UpDownAlign = _numericProperties.UpDownAlign;
                 numericUpDown.KeyDown += new KeyEventHandler(ComboBox_KeyDown);
                 returnControl = numericUpDown;
                 break;
