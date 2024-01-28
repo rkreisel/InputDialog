@@ -35,7 +35,8 @@ public partial class Main : Form
             selectedIcon,
             InputDialog.IDButton.OkCancel,
             InputDialog.IDType.TextBox,
-            defaultText: "Default Text");
+            defaultText: "Default Text",
+            multilineTextbox : false);
         if (rslt.DialogResult == DialogResult.OK)
             ShowResult(rslt.ResultText);
     }
