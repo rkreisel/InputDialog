@@ -17,6 +17,7 @@ public static class InputDialog
     private static Font _defaultFormFont = new("Segoe UI", 9, FontStyle.Regular);
     private static Size _defaultSize = new(350, 170);
     private static NumericProperties _numericProperties;
+    private static bool _multilineTextbox;
 
     /// <summary>
     /// This form functions like a MessageBox, with the added feature of accepting input via a textbox or combobox.
@@ -56,10 +57,12 @@ public static class InputDialog
         Color? foregroundColor = null,
         Color? backgroundColor = null,
         bool acceptsUserInput = true,
-        NumericProperties? numericProperties = null)
+        NumericProperties? numericProperties = null,
+        bool multilineTextbox = false)
     {
         //setup
         _numericProperties = numericProperties ?? new NumericProperties();
+        _multilineTextbox = multilineTextbox;
 
         //set the default Font for everything
         var fixedFormFontSize = frm.Font.Size;
@@ -404,13 +407,13 @@ public static class InputDialog
             case IDType.TextBox:
                 TextBox textBox = new()
                 {
-                    Size = new Size(sizeWidth, 23),
+                    Size = new Size(sizeWidth, 26),
                     Location = loc
                 };
                 textBox.KeyDown += new KeyEventHandler(TextBox_KeyDown);
                 textBox.Name = "textBox";
                 textBox.Text = defaultText;
-                textBox.Multiline = true;
+                textBox.Multiline = _multilineTextbox;
                 textBox.ScrollBars = ScrollBars.Vertical;
                 returnControl = textBox;
                 break;

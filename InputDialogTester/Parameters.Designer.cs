@@ -30,6 +30,7 @@
         {
             components = new System.ComponentModel.Container();
             sc = new SplitContainer();
+            chkMultiline = new CheckBox();
             btnShowDialog = new Button();
             groupBox3 = new GroupBox();
             txtIncrement = new TextBox();
@@ -125,6 +126,7 @@
             // 
             // sc.Panel1
             // 
+            sc.Panel1.Controls.Add(chkMultiline);
             sc.Panel1.Controls.Add(btnShowDialog);
             sc.Panel1.Controls.Add(groupBox3);
             sc.Panel1.Controls.Add(txtForegroundColor);
@@ -161,6 +163,16 @@
             sc.Size = new Size(731, 599);
             sc.SplitterDistance = 430;
             sc.TabIndex = 0;
+            // 
+            // chkMultiline
+            // 
+            chkMultiline.AutoSize = true;
+            chkMultiline.Location = new Point(369, 254);
+            chkMultiline.Name = "chkMultiline";
+            chkMultiline.Size = new Size(116, 19);
+            chkMultiline.TabIndex = 29;
+            chkMultiline.Text = "Multiline textbox";
+            chkMultiline.UseVisualStyleBackColor = true;
             // 
             // btnShowDialog
             // 
@@ -896,5 +908,6 @@
         private CheckBox chkThousandsSeparator;
         private NumericUpDown nudDecimalPlaces;
         private TextBox txtIncrement;
+        private CheckBox chkMultiline;
     }
 }
