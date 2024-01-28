@@ -275,7 +275,8 @@ namespace InputDialogTester
                 foregroundColor: chosenForegroundColor,
                 backgroundColor: chosenBackgroundColor,
                 acceptsUserInput: acceptsUserInput,
-                numericProperties: numericProperties);
+                numericProperties: numericProperties,
+                multilineTextbox: chkMultiline.Checked);
             if (rslt.DialogResult == DialogResult.OK)
                 txtResult.Text = rslt.ResultText;
         }
