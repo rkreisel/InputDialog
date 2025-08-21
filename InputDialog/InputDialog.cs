@@ -1,6 +1,7 @@
 ﻿//Acknowledging origin of this code
 //https://www.codeproject.com/tips/822756/input-box-in-csharp-for-windowsforms
 //It has been modified significantly, converted to .net 6 and turned into a nuget package.
+//As of 20250821 - Updated to .net 9 and C# 13
 
 using InputDialog.Utilities;
 

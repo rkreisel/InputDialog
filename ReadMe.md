@@ -2,6 +2,8 @@
 
 Input Dialog is a simple .net 6-windows, Winforms Input dialog in a nuget package.
 
+**20250821:** Updated to .net 9 and C# 13
+
 ### Nuget Link
 
 https://www.nuget.org/packages/InputDialog/
